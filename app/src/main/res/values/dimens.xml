@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_params_avatar_in_list">40dp</dimen>
+</resources>
