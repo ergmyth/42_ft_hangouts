@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#2C86F1</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="navigationBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+    <color name="textColor">#de000000</color>
+    <color name="statusBarColor">#2C86F1</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,11 +17,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_color">#FFFFFFFF</color>
-    <color name="text_color">#232323</color>
-    <color name="icon_color">#232323</color>
+    <color name="un_gray">#6d6d6d</color>
+    <color name="boulder">#7A7A7A</color>
 
-    <color name="mine_shaft">#232323</color>
     <color name="cadet_blue">#B5BBC5</color>
-
+    <color name="valencia">#CE412D</color>
+    <color name="fiord">#3A556A</color>
+    <color name="blue_bayoux">#46687F</color>
+    <color name="amethyst">#A06BC8</color>
+    <color name="affair">#735196</color>
 </resources>

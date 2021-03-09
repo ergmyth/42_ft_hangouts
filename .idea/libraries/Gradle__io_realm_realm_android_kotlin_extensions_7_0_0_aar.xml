@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: io.realm:realm-android-kotlin-extensions:7.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a36505b69b2fe4b54dfa37b2a6ca5064/jetified-realm-android-kotlin-extensions-7.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a36505b69b2fe4b54dfa37b2a6ca5064/jetified-realm-android-kotlin-extensions-7.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a36505b69b2fe4b54dfa37b2a6ca5064/jetified-realm-android-kotlin-extensions-7.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/realm-android-kotlin-extensions/7.0.0/194514a085a16b0e71ec970b2d7311a5d93f4158/realm-android-kotlin-extensions-7.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.realm/realm-android-kotlin-extensions/7.0.0/84a194b3ea22e37ecab321c16fcf7f04d0d5a4e2/realm-android-kotlin-extensions-7.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

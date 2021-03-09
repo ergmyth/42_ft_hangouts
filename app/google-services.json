@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "270820412562",
+    "project_id": "school21eleonard",
+    "storage_bucket": "school21eleonard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270820412562:android:6ba3af7923001423fa6a4b",
+        "android_client_info": {
+          "package_name": "ru.school21.eleonard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270820412562-5ic1n33gdke0gmkhl18p0ut7101c1pee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaoy3dcT4us9J0V0_FEvmRJXszO6qtgY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270820412562-5ic1n33gdke0gmkhl18p0ut7101c1pee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

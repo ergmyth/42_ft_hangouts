@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/background_color"
+    android:background="@color/colorOnBackground"
     android:orientation="vertical"
     android:paddingBottom="8dp">
 
@@ -17,6 +17,9 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvChar"
         android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textColor="@color/cadet_blue"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="А" />

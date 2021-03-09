@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "ft_hangouts_eleonard"
+rootProject.name = "eleonard"

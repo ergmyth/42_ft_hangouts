@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="main_activity_header">Контакты</string>
+    <string name="bnv_hangouts">Контакты</string>
+    <string name="bnv_companion">Школа</string>
+    <string name="bnv_proteins">Графика</string>
+    <string name="bnv_other">Ещё</string>
+
+    <string name="toolbar_title_contact_info_new">Новый контакт</string>
+
+    <string name="other_logout">Выйти</string>
+
+    <string name="contacts_mine">Мои контакты</string>
+    <string name="contacts_favourite">Избранные</string>
+
+    <string name="dialog_logout_title">Вы действительно хотите выйти из профиля?</string>
+    <string name="dialog_logout_negative">Отмена</string>
+    <string name="dialog_logout_positive">Да, выйти</string>
+
+    <string name="main_back_pressed">Нажмите еще раз для выхода</string>
+    <string name="toolbar_menu_search">Поиск</string>
+    <string name="toolbar_menu_sort">Сортировка</string>
+    <string name="toolbar_menu_filter">Фильтр</string>
+
+    <string name="auth_login">Логин</string>
+    <string name="auth_password">Пароль</string>
+    <string name="auth_log_in">Войти</string>
+    <string name="auth_sign_up">Регистрация</string>
 
     <string name="contact_address">Адрес</string>
     <string name="contact_name">Имя</string>
@@ -13,8 +37,18 @@
     <string name="action_delete">Удалить</string>
     <string name="action_create">Создать</string>
     <string name="action_recolor_header">Перекрасить заголовок</string>
-    <string name="action_search">Search</string>
 
-    <string name="loading_state_contacts">Loading contacts…</string>
+    <string name="loading_state_contacts">Загружаем список контактов…</string>
 
+    <string name="contact_list_empty_message">Список контактов пуст</string>
+    <string name="add_contact">Добавить контакт</string>
+    <string name="create_contact">Создать</string>
+    <string name="default_required_field_message">Обязательное поле</string>
+    <string name="phone_number_required_field_message">Номер должен состоять из 10 цифр</string>
+
+    <string name="night_mode">Тёмная тема</string>
+    <string name="night_mode_title">Выберите желаемую настройку</string>
+    <string name="night_mode_system">Системная</string>
+    <string name="night_mode_always">Включена</string>
+    <string name="night_mode_never">Выключена</string>
 </resources>

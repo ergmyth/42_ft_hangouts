@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorOnBackground"
+    android:padding="32dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/night_mode_title"
+        android:textColor="@color/textColor"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbSystem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:textColor="@color/textColor"
+            android:text="@string/night_mode_system"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rbTurnOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:textColor="@color/textColor"
+            android:text="@string/night_mode_never"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/rbTurnOn"
+            android:layout_width="wrap_content"
+            android:textColor="@color/textColor"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:text="@string/night_mode_always"
+            android:textSize="20sp" />
+    </RadioGroup>
+</LinearLayout>

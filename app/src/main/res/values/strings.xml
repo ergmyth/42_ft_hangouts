@@ -1,22 +1,57 @@
 <resources>
-    <string name="app_name" translatable="false">ft_hangouts_eleonard</string>
+    <string name="app_name" translatable="false">Eleonard</string>
 
-    <string name="main_activity_header">Contacts</string>
+    <string name="bnv_hangouts">Contacts</string>
+    <string name="bnv_companion">School info</string>
+    <string name="bnv_proteins">Graphics</string>
+    <string name="bnv_other">Other</string>
 
-    <string name="contact_address">Адрес</string>
-    <string name="contact_name">Имя</string>
-    <string name="contact_company">Компания</string>
-    <string name="contact_position">Должность</string>
-    <string name="contact_phone_number">Номер</string>
-    <string name="contact_avatar">Аватар</string>
+    <string name="toolbar_title_contact_info_new">Новый контакт</string>
 
-    <string name="action_edit">Редактировать</string>
-    <string name="action_delete">Удалить</string>
-    <string name="action_create">Создать</string>
-    <string name="action_recolor_header">Перекрасить заголовок</string>
-    <string name="action_search">Поиск</string>
+    <string name="other_logout">Logout</string>
 
-    <string name="loading_state_contacts">Загружаем список контактов…</string>
+    <string name="contacts_mine">My contacts</string>
+    <string name="contacts_favourite">Favourite</string>
 
+    <string name="dialog_logout_title">Do you really want to log out?</string>
+    <string name="dialog_logout_negative">Cancel</string>
+    <string name="dialog_logout_positive">Log out</string>
+
+    <string name="main_back_pressed">Click again to exit</string>
+
+    <string name="toolbar_menu_search">Search</string>
+    <string name="toolbar_menu_sort">Sort</string>
+    <string name="toolbar_menu_filter">Filter</string>
+
+    <string name="auth_login">Login</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_log_in">Log in</string>
+    <string name="auth_sign_up">Sign Up</string>
+
+    <string name="contact_address">Address</string>
+    <string name="contact_name">Name</string>
+    <string name="contact_company">Company</string>
+    <string name="contact_position">Position</string>
+    <string name="contact_phone_number">Phone</string>
+    <string name="contact_avatar">Avatar</string>
+
+    <string name="action_edit">Edit</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_create">Create</string>
+    <string name="action_recolor_header">Recolor title</string>
+
+    <string name="loading_state_contacts">Loading contact list…</string>
+
+    <string name="contact_list_empty_message">Contact list is empty</string>
+    <string name="add_contact">New contact</string>
+    <string name="create_contact">Create</string>
+    <string name="default_required_field_message">Required</string>
+    <string name="phone_number_required_field_message">Phone number must be 10 digits</string>
+
+    <string name="night_mode">Night mode</string>
+    <string name="night_mode_title">Select the desired setting</string>
+    <string name="night_mode_system">System</string>
+    <string name="night_mode_always">Activated</string>
+    <string name="night_mode_never">Deactivated</string>
 
 </resources>

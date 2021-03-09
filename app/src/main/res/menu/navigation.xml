@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuItemContacts"
+        android:icon="@drawable/ic_bnv_contacts"
+        android:title="@string/bnv_hangouts" />
+    <item
+        android:id="@+id/menuItemSchoolInfo"
+        android:icon="@drawable/ic_bnv_school_info"
+        android:title="@string/bnv_companion" />
+    <item
+        android:id="@+id/menuItemGraphics"
+        android:icon="@drawable/ic_bnv_graphics"
+        android:title="@string/bnv_proteins" />
+    <item
+        android:id="@+id/menuItemOther"
+        android:icon="@drawable/ic_bnv_other"
+        android:title="@string/bnv_other" />
+</menu>
