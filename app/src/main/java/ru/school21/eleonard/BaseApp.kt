@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.HiltAndroidApp
+import ru.school21.eleonard.data.TokenRepository
 import ru.school21.eleonard.helpers.Constants
 
 //todo Подключить retrofit
@@ -60,5 +61,10 @@ class BaseApp : Application() {
 	}
 
 	private fun loadTokensFromSharedPrefToRepo() {
+		if (getSharedPref().getString(Constants.ACCESS_TOKEN, "")!!.isNotEmpty())
+			TokenRepository.loadTokenFromShared(
+				getSharedPref().getString(Constants.ACCESS_TOKEN, "")!!,
+				getSharedPref().getLong(Constants.ACCESS_TOKEN_LIVE_TIME, 0L),
+			)
 	}
 }

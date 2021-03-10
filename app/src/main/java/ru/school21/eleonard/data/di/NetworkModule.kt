@@ -12,7 +12,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import ru.school21.eleonard.data.ApiRepository
 import ru.school21.eleonard.data.NetworkHolder
-import ru.school21.eleonard.data.api.IContactsApi
+import ru.school21.eleonard.data.api.IUsersApi
+import ru.school21.eleonard.helpers.requests.data.CompositeDisposableRepository
+import ru.school21.eleonard.helpers.requests.data.CompositeDisposableRepositoryImpl
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -26,7 +28,7 @@ object NetworkModule {
 		interceptor.level = HttpLoggingInterceptor.Level.BODY
 
 		val dispatcher = Dispatcher()
-		dispatcher.maxRequests = 1
+		dispatcher.maxRequests = 2
 
 		return OkHttpClient().newBuilder()
 			.followRedirects(true)
@@ -58,7 +60,12 @@ object NetworkModule {
 	}
 
 	@Provides
-	fun provideCommonApi(retrofit: Retrofit): IContactsApi {
-		return retrofit.create(IContactsApi::class.java)
+	fun provideCommonApi(retrofit: Retrofit): IUsersApi {
+		return retrofit.create(IUsersApi::class.java)
+	}
+
+	@Provides
+	fun provideCompositeDisposableRepository(): CompositeDisposableRepository {
+		return CompositeDisposableRepositoryImpl()
 	}
 }

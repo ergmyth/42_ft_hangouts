@@ -28,7 +28,7 @@ class ContactsFragment : Fragment(), ContactsViewPagerManager {
 		ToolbarConfigurator().configureToolbar(
 			menu,
 			inflater,
-			activity as? ToolbarManager,
+			requireActivity() as? ToolbarManager,
 			ToolbarStates.STATE_CONTACTS_MAIN,
 			resources.getString(R.string.bnv_hangouts)
 		)

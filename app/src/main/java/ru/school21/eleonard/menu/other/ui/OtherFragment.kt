@@ -25,7 +25,7 @@ class OtherFragment : Fragment() {
 		ToolbarConfigurator().configureToolbar(
 			menu,
 			inflater,
-			activity as? ToolbarManager,
+			requireActivity() as? ToolbarManager,
 			ToolbarStates.STATE_OTHER_MAIN,
 			resources.getString(R.string.bnv_other)
 		)

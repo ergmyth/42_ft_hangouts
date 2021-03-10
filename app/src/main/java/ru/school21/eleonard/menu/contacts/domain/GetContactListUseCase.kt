@@ -1,4 +1,4 @@
-package ru.school21.eleonard.menu.contacts.domain.getContactList
+package ru.school21.eleonard.menu.contacts.domain
 
 import ru.school21.eleonard.data.db.realmModels.ContactRealmModel
 

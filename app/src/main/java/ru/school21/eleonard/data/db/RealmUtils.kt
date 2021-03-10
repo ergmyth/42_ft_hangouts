@@ -32,7 +32,7 @@ class RealmUtils {
 		}
 	}
 
-	fun insertOrUpdate(realmObject: RealmModel?) {
+	fun insertOrUpdate(realmObject: RealmModel) {
 		if (!realm.isInTransaction)
 			realm.beginTransaction()
 		realm.insertOrUpdate(realmObject)

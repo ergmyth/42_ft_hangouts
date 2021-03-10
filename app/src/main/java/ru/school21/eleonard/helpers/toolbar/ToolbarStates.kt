@@ -20,7 +20,7 @@ enum class ToolbarStates(
 	),
 	STATE_SCHOOL_MAIN(
 		isBackBtnVisible = false,
-		isSearchVisible = false,
+		isSearchVisible = true,
 		isFilterVisible = false,
 		isSortVisible = false,
 	),

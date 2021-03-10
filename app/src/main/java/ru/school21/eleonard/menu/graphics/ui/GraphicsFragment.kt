@@ -18,7 +18,7 @@ class GraphicsFragment : Fragment() {
 		super.onCreateOptionsMenu(menu, inflater)
 		ToolbarConfigurator().configureToolbar(menu,
 			inflater,
-			activity as? ToolbarManager,
+			requireActivity() as? ToolbarManager,
 			ToolbarStates.STATE_GRAPHICS_MAIN,
 			resources.getString(R.string.bnv_proteins))
 	}

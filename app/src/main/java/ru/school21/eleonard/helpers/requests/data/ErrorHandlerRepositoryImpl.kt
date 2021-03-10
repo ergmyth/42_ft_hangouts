@@ -1,4 +1,4 @@
-package ru.school21.eleonard.helpers.requests
+package ru.school21.eleonard.helpers.requests.data
 
 class ErrorHandlerRepositoryImpl : ErrorHandlerRepository {
 	override fun handleErrorMessage(errorMessage: String): String {

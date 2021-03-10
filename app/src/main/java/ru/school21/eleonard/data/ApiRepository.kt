@@ -1,15 +1,18 @@
 package ru.school21.eleonard.data
 
-import retrofit2.Response
-import ru.school21.eleonard.data.api.IContactsApi
-import ru.school21.eleonard.helpers.requests.ResponseWrapper
-import ru.school21.eleonard.menu.contacts.models.Contact
+import ru.school21.eleonard.data.api.IAuthApi
+import ru.school21.eleonard.data.api.IUsersApi
+import ru.school21.eleonard.data.api.models.UserResponse
 import javax.inject.Inject
+import io.reactivex.Observable
+import retrofit2.Response
+
 
 class ApiRepository @Inject constructor(
-	val contactsApi: IContactsApi,
+	val usersApi: IUsersApi,
+	val authApi: IAuthApi,
 ) {
-	suspend fun getContacts(): Response<ResponseWrapper<List<Contact>>> {
-		return contactsApi.getContacts()
+	fun getUserInfo(userName: String): Observable<UserResponse> {
+		return usersApi.getUserInfo(user = userName)
 	}
 }

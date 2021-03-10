@@ -6,12 +6,12 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.school21.eleonard.data.api.IContactsApi
+import ru.school21.eleonard.data.api.IAuthApi
+import ru.school21.eleonard.data.api.IUsersApi
 import java.util.concurrent.TimeUnit
 
 object NetworkHolder {
-	//todo узнать адрес апишки и запилить все нужные методы
-	const val baseurl = "https://api./"
+	private const val baseUrl = "https://api.intra.42.fr"
 
 	var retrofitClient: Retrofit
 	var authenticatorRetrofitClient: Retrofit
@@ -22,7 +22,7 @@ object NetworkHolder {
 		authenticatorRetrofitClient = Retrofit.Builder()
 			.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 			.addConverterFactory(GsonConverterFactory.create())
-			.baseUrl(baseurl)
+			.baseUrl(baseUrl)
 			.build()
 
 		val interceptor = HttpLoggingInterceptor()
@@ -45,12 +45,13 @@ object NetworkHolder {
 		retrofitClient = Retrofit.Builder()
 			.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 			.addConverterFactory(GsonConverterFactory.create())
-			.baseUrl(baseurl)
+			.baseUrl(baseUrl)
 			.client(httpClient)
 			.build()
 
 		apiRepository = ApiRepository(
-			retrofitClient.create(IContactsApi::class.java)
+			retrofitClient.create(IUsersApi::class.java),
+			retrofitClient.create(IAuthApi::class.java),
 		)
 	}
 }
