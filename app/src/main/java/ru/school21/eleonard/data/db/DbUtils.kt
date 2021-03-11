@@ -1,5 +1,6 @@
 package ru.school21.eleonard.data.db
 
+import android.util.Log
 import io.realm.Realm
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -31,7 +32,7 @@ class DbUtils @Inject constructor(var realm: Realm) {
 				}
 			}
 		} catch (e: Exception) {
-
+			Log.d("PurgeBaseException", e.message ?: "Error message is empty")
 		}
 	}
 }

@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.R
 import ru.school21.eleonard.databinding.FragmentSchoolInfoBinding
-import ru.school21.eleonard.helpers.requests.Status
+import ru.school21.eleonard.data.network.helpers.Status
 import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
 import ru.school21.eleonard.mainWindow.ToolbarManager

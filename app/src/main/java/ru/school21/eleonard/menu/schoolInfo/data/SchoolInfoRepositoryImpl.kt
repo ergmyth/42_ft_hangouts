@@ -4,12 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import ru.school21.eleonard.helpers.requests.Event
+import okhttp3.internal.http2.ConnectionShutdownException
+import retrofit2.HttpException
+import ru.school21.eleonard.Constants
+import ru.school21.eleonard.data.network.helpers.Event
 import javax.inject.Inject
-import ru.school21.eleonard.data.ApiRepository
-import ru.school21.eleonard.data.api.models.UserResponse
-import ru.school21.eleonard.helpers.requests.data.CompositeDisposableRepository
-import ru.school21.eleonard.helpers.requests.data.ErrorHandlerRepository
+import ru.school21.eleonard.data.network.ApiRepository
+import ru.school21.eleonard.data.network.api.models.UserResponse
+import ru.school21.eleonard.data.network.helpers.ResponseWrapper
+import ru.school21.eleonard.data.network.repositories.CompositeDisposableRepository
+import ru.school21.eleonard.data.network.repositories.ErrorHandlerRepository
 
 class SchoolInfoRepositoryImpl @Inject constructor(
 	private val apiRepository: ApiRepository,
@@ -22,16 +26,21 @@ class SchoolInfoRepositoryImpl @Inject constructor(
 			apiRepository.getUserInfo(userName)
 				.subscribeOn(Schedulers.newThread())
 				.observeOn(AndroidSchedulers.mainThread())
-				.unsubscribeOn(Schedulers.io())
-				.subscribeWith(object : DisposableObserver<UserResponse>() {
-					override fun onNext(response: UserResponse) {
-						userInfoLoadingResponse.postValue(Event.success(response))
+				.subscribeWith(object : DisposableObserver<ResponseWrapper<UserResponse>>() {
+					override fun onNext(response: ResponseWrapper<UserResponse>) {
+						if (response.statusId == Constants.HTTP_SUCCESSFULL) {
+							response.data?.let {
+								userInfoLoadingResponse.postValue(Event.success(it))
+							} ?: userInfoLoadingResponse.postValue(Event.error(errorHandlerRepository.handleErrorMessage("getUserInfo", "Data is empty")))
+						} else {
+							userInfoLoadingResponse.postValue(Event.error(errorHandlerRepository.handleErrorMessage("getUserInfo", "Status code is not 200")))
+						}
 					}
-
 					override fun onComplete() {}
-
 					override fun onError(e: Throwable) {
-						userInfoLoadingResponse.postValue(Event.error(errorHandlerRepository.handleErrorMessage(e.message!!)))
+						(e as? HttpException)?.let {
+							userInfoLoadingResponse.postValue(Event.error(errorHandlerRepository.handleHttpException("getUserInfo", it.code())))
+						} ?: userInfoLoadingResponse.postValue(Event.error(errorHandlerRepository.handleErrorMessage("getUserInfo", e.message ?: "ErrorMessage is empty")))
 					}
 				})
 		)

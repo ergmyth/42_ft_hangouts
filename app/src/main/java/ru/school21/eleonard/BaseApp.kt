@@ -7,15 +7,13 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 import dagger.hilt.android.HiltAndroidApp
-import ru.school21.eleonard.data.TokenRepository
-import ru.school21.eleonard.helpers.Constants
+import ru.school21.eleonard.data.network.TokenRepository
 
-//todo Подключить retrofit
 //todo recyclerViews: diffUtils, itemDecoration
 //todo contactInfo: допилить остальные поля, функциональные кнопки и загрузку аватара
-//todo realm purgeBase and shared
 //todo Безопасность: заменить логин на пин, Добавить в "ещё" создание пина
 //todo Безопасность: фукнцию удаления имён у всех контактов, если пин есть, то запрашиваем пин, если нет, то окно подтверждения
+//todo Обработка ошибки отсутствия интернета
 
 @HiltAndroidApp
 class BaseApp : Application() {
@@ -53,18 +51,23 @@ class BaseApp : Application() {
 		loadTokensFromSharedPrefToRepo()
 		loadNightMode()
 		messageReceiver = MessageReceiver()
-		registerReceiver(messageReceiver, IntentFilter(Constants.BROADCAST_ACTION_MESSAGE))
+		registerReceiver(messageReceiver, IntentFilter(Constants.SP_BROADCAST_ACTION_MESSAGE))
 	}
 
 	private fun loadNightMode() {
-		AppCompatDelegate.setDefaultNightMode(getSharedPref().getInt(Constants.CHOSEN_THEME, 0))
+		AppCompatDelegate.setDefaultNightMode(getSharedPref().getInt(Constants.SP_CHOSEN_THEME, 0))
 	}
 
 	private fun loadTokensFromSharedPrefToRepo() {
-		if (getSharedPref().getString(Constants.ACCESS_TOKEN, "")!!.isNotEmpty())
-			TokenRepository.loadTokenFromShared(
-				getSharedPref().getString(Constants.ACCESS_TOKEN, "")!!,
-				getSharedPref().getLong(Constants.ACCESS_TOKEN_LIVE_TIME, 0L),
-			)
+		if (getSharedPref().getString(Constants.SP_ACCESS_TOKEN, "")!!.isNotEmpty())
+			TokenRepository.loadTokenFromShared(getSharedPref().getString(Constants.SP_ACCESS_TOKEN, "")!!)
 	}
+
+	/*
+		fun resetDataAndLogout() {
+		dbUtils.purgeBase()
+		TokenRepository.deleteToken()
+		NetworkHolder.httpClient.dispatcher.cancelAll()
+	}
+	 */
 }

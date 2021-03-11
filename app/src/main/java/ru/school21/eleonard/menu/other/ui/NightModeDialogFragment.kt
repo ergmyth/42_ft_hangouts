@@ -10,8 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.BaseApp
 import ru.school21.eleonard.databinding.FragmentDialogNightModeBinding
-import ru.school21.eleonard.helpers.Constants
-import ru.school21.eleonard.mainWindow.MainActivityViewPagerManager
+import ru.school21.eleonard.Constants
 import ru.school21.eleonard.menu.other.viewModels.SettingsViewModel
 
 @AndroidEntryPoint
@@ -64,7 +63,7 @@ internal class NightModeDialogFragment : DialogFragment() {
 
     private fun setNightMode(mode: Int) {
         AppCompatDelegate.setDefaultNightMode(mode)
-        BaseApp.getSharedPref().edit().putInt(Constants.CHOSEN_THEME, mode).apply()
+        BaseApp.getSharedPref().edit().putInt(Constants.SP_CHOSEN_THEME, mode).apply()
         settingsViewModel.currentTheme.value = mode
     }
 }

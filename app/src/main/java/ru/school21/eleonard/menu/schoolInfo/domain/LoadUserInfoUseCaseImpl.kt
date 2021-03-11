@@ -1,8 +1,8 @@
 package ru.school21.eleonard.menu.schoolInfo.domain
 
 import androidx.lifecycle.MutableLiveData
-import ru.school21.eleonard.data.api.models.UserResponse
-import ru.school21.eleonard.helpers.requests.Event
+import ru.school21.eleonard.data.network.api.models.UserResponse
+import ru.school21.eleonard.data.network.helpers.Event
 import ru.school21.eleonard.menu.schoolInfo.data.SchoolInfoRepository
 import javax.inject.Inject
 
