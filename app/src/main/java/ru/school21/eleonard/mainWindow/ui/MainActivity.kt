@@ -14,16 +14,37 @@ import ru.school21.eleonard.helpers.hide
 import ru.school21.eleonard.helpers.show
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
 import ru.school21.eleonard.mainWindow.MainActivityViewPagerManager
+import ru.school21.eleonard.mainWindow.ProgressBarManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.mainWindow.adapters.MainViewPagerStateAdapter
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarManager {
+class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarManager, ProgressBarManager {
 	private lateinit var binding: ActivityMainBinding
 
 	private val isAuthorized = false
 	private var backPressed = 0L
+
+	private var ongoingRequestsCounter = 0
+
+	override fun startLoading(text: String?) {
+		ongoingRequestsCounter++
+		binding.llLoading.show()
+		binding.tvLoadingText.text = if (ongoingRequestsCounter > 1)
+			resources.getString(R.string.loading_message_receiving) + " ($ongoingRequestsCounter)"
+		else
+			(text ?: resources.getString(R.string.loading_message_receiving))
+	}
+
+	override fun finishLoading() {
+		ongoingRequestsCounter--
+		when (ongoingRequestsCounter) {
+			0 -> binding.llLoading.hide()
+			1 -> binding.tvLoadingText.text = resources.getString(R.string.loading_message_receiving)
+			else -> binding.tvLoadingText.text = "${binding.tvLoadingText.text} ($ongoingRequestsCounter)"
+		}
+	}
 
 	override fun configureToolbar(title: String, toolbarState: ToolbarStates) {
 		supportActionBar?.title = title

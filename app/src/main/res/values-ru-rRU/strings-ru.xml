@@ -39,6 +39,8 @@
     <string name="action_recolor_header">Перекрасить заголовок</string>
 
     <string name="loading_state_contacts">Загружаем список контактов…</string>
+    <string name="loading_message_receiving">Загружаем необходимые данные…</string>
+    <string name="loading_message_error">Ошибка загрузки данных. Нажмите, чтобы попробовать ещё раз.</string>
 
     <string name="contact_list_empty_message">Список контактов пуст</string>
     <string name="add_contact">Добавить контакт</string>
@@ -51,4 +53,6 @@
     <string name="night_mode_system">Системная</string>
     <string name="night_mode_always">Включена</string>
     <string name="night_mode_never">Выключена</string>
+
+
 </resources>

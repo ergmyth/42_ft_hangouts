@@ -41,6 +41,8 @@
     <string name="action_recolor_header">Recolor title</string>
 
     <string name="loading_state_contacts">Loading contact list…</string>
+    <string name="loading_message_receiving">Loading the required data…</string>
+    <string name="loading_message_error">Loading failed. Tap here to try again.</string>
 
     <string name="contact_list_empty_message">Contact list is empty</string>
     <string name="add_contact">New contact</string>

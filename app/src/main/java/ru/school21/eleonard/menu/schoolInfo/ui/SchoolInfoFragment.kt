@@ -2,6 +2,7 @@ package ru.school21.eleonard.menu.schoolInfo.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -12,6 +13,7 @@ import ru.school21.eleonard.databinding.FragmentSchoolInfoBinding
 import ru.school21.eleonard.data.network.helpers.Status
 import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
+import ru.school21.eleonard.mainWindow.ProgressBarManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.menu.schoolInfo.viewModels.SchoolInfoViewModel
 
@@ -72,13 +74,20 @@ class SchoolInfoFragment : Fragment() {
 		schoolInfoViewModel.userInfoLoadingResponse.observe(viewLifecycleOwner, Observer {
 			when (it.status) {
 				Status.LOADING -> {
-
+					(requireActivity() as? ProgressBarManager)?.startLoading(resources.getString(R.string.loading_message_receiving))
 				}
 				Status.SUCCESS -> {
-
+					if (it.data == null) {
+						Toast.makeText(requireContext(), resources.getString(R.string.loading_message_error), Toast.LENGTH_SHORT).show()
+					} else {
+						//todo
+					}
+					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 				Status.ERROR -> {
 
+					Toast.makeText(requireContext(), resources.getString(R.string.loading_message_error), Toast.LENGTH_SHORT).show()
+					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 			}
 		})
