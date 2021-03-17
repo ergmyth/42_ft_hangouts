@@ -67,5 +67,6 @@
     <string name="pin_not_valid">Invalid pin code. Try harder.</string>
     <string name="pin_created">Pin code successfully created.</string>
     <string name="pin_deleted">Pin code successfully deleted.</string>
+    <string name="pin_reset_data">All data has been deleted.</string>
 
 </resources>

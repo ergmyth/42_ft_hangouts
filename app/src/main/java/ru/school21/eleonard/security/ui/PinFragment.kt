@@ -205,9 +205,7 @@ class PinFragment : Fragment() {
 		when (securityViewModel.attemptsLeft) {
 			0 -> {
 				securityViewModel.resetData()
-				requireActivity().finish()
-				requireActivity().finishAffinity()
-				//todo recreate activity
+				(requireActivity() as? MainActivityViewPagerManager)?.configureActivityForAuthorizedUser()
 			}
 			1 -> UtilsUI.makeCoolToast(resources.getString(R.string.pin_1_try_left), ToastStates.ERROR)
 			2 -> UtilsUI.makeCoolToast(resources.getString(R.string.pin_2_tries_left), ToastStates.ERROR)

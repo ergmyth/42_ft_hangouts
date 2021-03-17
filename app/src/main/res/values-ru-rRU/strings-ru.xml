@@ -65,4 +65,5 @@
     <string name="pin_not_valid">Неверный пин-код. Попробуй ещё раз.</string>
     <string name="pin_created">Пин-код успешно создан.</string>
     <string name="pin_deleted">Пин-код успешно удалён.</string>
+    <string name="pin_reset_data">Все данные удалены.</string>
 </resources>
