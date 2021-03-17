@@ -54,5 +54,15 @@
     <string name="night_mode_always">Включена</string>
     <string name="night_mode_never">Выключена</string>
 
+    <string name="security">Безопасность</string>
 
+    <string name="pin_toolbar_title">Пин-код</string>
+    <string name="pin_title_create">Создайте пин-код</string>
+    <string name="pin_title_delete">Введите текущий пин-код</string>
+    <string name="pin_title_confirm">Повторите ранее введённый пин-код</string>
+    <string name="pin_2_tries_left">Неверный пин-код. Осталось 2 попытки!</string>
+    <string name="pin_1_try_left">Неверный пин-код. Последняя попытка!</string>
+    <string name="pin_not_valid">Неверный пин-код. Попробуй ещё раз.</string>
+    <string name="pin_created">Пин-код успешно создан.</string>
+    <string name="pin_deleted">Пин-код успешно удалён.</string>
 </resources>

@@ -11,7 +11,6 @@ import ru.school21.eleonard.data.network.TokenRepository
 
 //todo recyclerViews: diffUtils, itemDecoration
 //todo contactInfo: допилить остальные поля, функциональные кнопки и загрузку аватара
-//todo Безопасность: заменить логин на пин, Добавить в "ещё" создание пина
 //todo Безопасность: фукнцию удаления имён у всех контактов, если пин есть, то запрашиваем пин, если нет, то окно подтверждения
 //todo Обработка ошибки отсутствия интернета
 
@@ -62,12 +61,4 @@ class BaseApp : Application() {
 		if (getSharedPref().getString(Constants.SP_ACCESS_TOKEN, "")!!.isNotEmpty())
 			TokenRepository.loadTokenFromShared(getSharedPref().getString(Constants.SP_ACCESS_TOKEN, "")!!)
 	}
-
-	/*
-		fun resetDataAndLogout() {
-		dbUtils.purgeBase()
-		TokenRepository.deleteToken()
-		NetworkHolder.httpClient.dispatcher.cancelAll()
-	}
-	 */
 }

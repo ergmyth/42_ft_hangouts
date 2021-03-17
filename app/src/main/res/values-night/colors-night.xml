@@ -3,5 +3,6 @@
     <color name="navigationBackground">#222C3B</color>
     <color name="colorOnBackground">#171E28</color>
     <color name="textColor">#deffffff</color>
+    <color name="invertedTextColor">#de000000</color>
     <color name="statusBarColor">#222C3B</color>
 </resources>

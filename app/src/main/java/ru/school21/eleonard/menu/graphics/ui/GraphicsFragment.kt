@@ -27,7 +27,7 @@ class GraphicsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 		binding = FragmentGraphicsBinding.inflate(layoutInflater, container, false)
 		return binding.root
 	}

@@ -47,4 +47,9 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="PinNumberTextView">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">36sp</item>
+    </style>
 </resources>

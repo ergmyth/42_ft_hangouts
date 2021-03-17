@@ -13,6 +13,8 @@ import ru.school21.eleonard.databinding.FragmentSchoolInfoBinding
 import ru.school21.eleonard.data.network.helpers.Status
 import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
+import ru.school21.eleonard.helpers.utils.ToastStates
+import ru.school21.eleonard.helpers.utils.UtilsUI
 import ru.school21.eleonard.mainWindow.ProgressBarManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.menu.schoolInfo.viewModels.SchoolInfoViewModel
@@ -78,15 +80,14 @@ class SchoolInfoFragment : Fragment() {
 				}
 				Status.SUCCESS -> {
 					if (it.data == null) {
-						Toast.makeText(requireContext(), resources.getString(R.string.loading_message_error), Toast.LENGTH_SHORT).show()
+						UtilsUI.makeCoolToast(resources.getString(R.string.loading_message_error), ToastStates.ERROR)
 					} else {
 						//todo
 					}
 					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 				Status.ERROR -> {
-
-					Toast.makeText(requireContext(), resources.getString(R.string.loading_message_error), Toast.LENGTH_SHORT).show()
+					UtilsUI.makeCoolToast(it.error ?: resources.getString(R.string.loading_message_error), ToastStates.ERROR)
 					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 			}

@@ -25,7 +25,7 @@ class ContactListFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View? {
+	): View {
 		binding = FragmentContactListBinding.inflate(layoutInflater, container, false)
 		initViewModels()
 		return binding.root

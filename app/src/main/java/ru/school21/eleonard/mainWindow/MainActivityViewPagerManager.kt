@@ -6,6 +6,6 @@ interface MainActivityViewPagerManager {
 	fun openMultiplayer()
 	fun openOther()
 
-	fun configureActivityForGuest()
+	fun configureActivityForNonAuthorizedUser()
 	fun configureActivityForAuthorizedUser()
 }

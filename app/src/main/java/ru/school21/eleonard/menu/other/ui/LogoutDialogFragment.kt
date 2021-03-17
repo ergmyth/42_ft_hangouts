@@ -15,7 +15,7 @@ internal class LogoutDialogFragment : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 		binding = FragmentDialogLogoutBinding.inflate(inflater, container, false)
 		return binding.root
 	}
@@ -38,6 +38,6 @@ internal class LogoutDialogFragment : DialogFragment() {
 
 	//todo purgeBase, clear sharedPref etc.
 	private fun resetApplicationData() {
-		(requireActivity() as? MainActivityViewPagerManager)?.configureActivityForGuest()
+		(requireActivity() as? MainActivityViewPagerManager)?.configureActivityForNonAuthorizedUser()
 	}
 }

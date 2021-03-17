@@ -16,10 +16,9 @@ import ru.school21.eleonard.menu.other.viewModels.SettingsViewModel
 @AndroidEntryPoint
 internal class NightModeDialogFragment : DialogFragment() {
     private lateinit var binding: FragmentDialogNightModeBinding
-    private var currentTheme: Int = 0
     private lateinit var settingsViewModel: SettingsViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentDialogNightModeBinding.inflate(inflater, container, false)
         initViewModels()
         return binding.root
@@ -45,19 +44,16 @@ internal class NightModeDialogFragment : DialogFragment() {
 
     private fun initListeners() {
         binding.rbSystem.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if (isChecked) {
+            if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-            }
         }
         binding.rbTurnOff.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if (isChecked) {
+            if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
         }
         binding.rbTurnOn.setOnCheckedChangeListener { compoundButton, isChecked ->
-            if (isChecked) {
+            if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
         }
     }
 

@@ -14,6 +14,7 @@ import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
 import ru.school21.eleonard.mainWindow.ProgressBarManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.menu.other.viewModels.SettingsViewModel
+import ru.school21.eleonard.security.ui.PinFragment
 
 @AndroidEntryPoint
 class OtherFragment : Fragment() {
@@ -35,7 +36,7 @@ class OtherFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View? {
+	): View {
 		binding = FragmentOtherBinding.inflate(layoutInflater, container, false)
 		initViewModels()
 		return binding.root
@@ -51,6 +52,7 @@ class OtherFragment : Fragment() {
 		configureViews()
 		initListeners()
 		initObservers()
+		setHasOptionsMenu(true)
 	}
 
 	private fun initObservers() {
@@ -72,17 +74,21 @@ class OtherFragment : Fragment() {
 	}
 
 	private fun configureViews() {
-		setHasOptionsMenu(true)
 		configureSelectedTheme()
 	}
 
 	private fun initListeners() {
-		binding.btnLogout.setOnClickListener {
-			LogoutDialogFragment().show(parentFragmentManager, "")
-		}
-
 		binding.clTheme.setOnClickListener {
 			NightModeDialogFragment().show(childFragmentManager, "")
+		}
+
+		binding.tvSecurity.setOnClickListener {
+			//todo открывать другой фрагмент где будет пин и прочее
+			childFragmentManager
+				.beginTransaction()
+				.add(binding.root.id, PinFragment())
+				.addToBackStack(null)
+				.commit()
 		}
 	}
 }

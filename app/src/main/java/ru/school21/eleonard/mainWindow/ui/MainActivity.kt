@@ -7,7 +7,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import ru.school21.eleonard.BaseApp
+import ru.school21.eleonard.Constants
 import ru.school21.eleonard.R
 import ru.school21.eleonard.databinding.ActivityMainBinding
 import ru.school21.eleonard.helpers.hide
@@ -17,13 +20,15 @@ import ru.school21.eleonard.mainWindow.MainActivityViewPagerManager
 import ru.school21.eleonard.mainWindow.ProgressBarManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.mainWindow.adapters.MainViewPagerStateAdapter
+import ru.school21.eleonard.security.helpers.PinState
+import ru.school21.eleonard.security.viewModels.SecurityViewModel
 import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarManager, ProgressBarManager {
 	private lateinit var binding: ActivityMainBinding
+	private lateinit var securityViewModel: SecurityViewModel
 
-	private val isAuthorized = false
 	private var backPressed = 0L
 
 	private var ongoingRequestsCounter = 0
@@ -90,8 +95,14 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+		securityViewModel = ViewModelProvider(this).get(SecurityViewModel::class.java)
 		configureViews()
 		initBnvListener()
+	}
+
+	override fun onStop() {
+		super.onStop()
+		configureActivityByPin()
 	}
 
 	override fun openCameras() {
@@ -110,14 +121,16 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 		binding.bnvMain.selectedItemId = R.id.menuItemOther
 	}
 
-	override fun configureActivityForGuest() {
+	override fun configureActivityForNonAuthorizedUser() {
 		//todo Решить проблему с адаптером при переключении на тёмную тему.
+		securityViewModel.currentPinState = PinState.LOGIN
 		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 1, isGuest = true)
 		binding.bnvMain.hide()
 		binding.cvToolbar.hide()
 	}
 
 	override fun configureActivityForAuthorizedUser() {
+		securityViewModel.currentPinState = if (isPinExist()) PinState.DELETE else PinState.CREATE
 		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 4, isGuest = false)
 		binding.bnvMain.show()
 		binding.cvToolbar.show()
@@ -128,10 +141,14 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 		setSupportActionBar(binding.toolbar)
 		binding.vpMain.isUserInputEnabled = false
 		binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColor))
-		if (isAuthorized)
-			configureActivityForAuthorizedUser()
+		configureActivityByPin()
+	}
+
+	private fun configureActivityByPin() {
+		if (isPinExist())
+			configureActivityForNonAuthorizedUser()
 		else
-			configureActivityForGuest()
+			configureActivityForAuthorizedUser()
 	}
 
 	private fun initBnvListener() {
@@ -145,6 +162,10 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 			binding.toolbar.collapseActionView()
 			true
 		}
+	}
+
+	private fun isPinExist(): Boolean {
+		return BaseApp.getSharedPref().getString(Constants.SP_PIN_ENCODED, "")!!.isNotEmpty()
 	}
 
 	private fun hideKeyboard() {

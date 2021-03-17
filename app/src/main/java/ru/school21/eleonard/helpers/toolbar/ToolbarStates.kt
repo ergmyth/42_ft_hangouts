@@ -35,5 +35,11 @@ enum class ToolbarStates(
 		isSearchVisible = false,
 		isFilterVisible = false,
 		isSortVisible = false,
-	);
+	),
+	STATE_PIN (
+		isBackBtnVisible = true,
+		isSearchVisible = false,
+		isFilterVisible = false,
+		isSortVisible = false,
+	),
 }

@@ -56,4 +56,16 @@
     <string name="night_mode_always">Activated</string>
     <string name="night_mode_never">Deactivated</string>
 
+    <string name="security">Security</string>
+
+    <string name="pin_toolbar_title">Pin code</string>
+    <string name="pin_title_create">Create a pin code</string>
+    <string name="pin_title_delete">Enter current pin code</string>
+    <string name="pin_title_confirm">Confirm the pin code</string>
+    <string name="pin_2_tries_left">Invalid pin code. Two tries left!</string>
+    <string name="pin_1_try_left">Invalid pin code. Last try!</string>
+    <string name="pin_not_valid">Invalid pin code. Try harder.</string>
+    <string name="pin_created">Pin code successfully created.</string>
+    <string name="pin_deleted">Pin code successfully deleted.</string>
+
 </resources>
