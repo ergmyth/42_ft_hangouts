@@ -19,7 +19,7 @@ class ApiAuthenticator : Authenticator {
 			return when (response.code) {
 				Constants.HTTP_UNAUTHORIZED -> {
 					val newToken = getNewToken()
-					if (newToken?.code() == Constants.HTTP_SUCCESSFULL) {
+					if (newToken?.code() == Constants.HTTP_SUCCESSFUL) {
 						updateTokens(newToken)
 						originalRequest.newBuilder().header("Authorization", TokenRepository.accessToken).build()
 					} else

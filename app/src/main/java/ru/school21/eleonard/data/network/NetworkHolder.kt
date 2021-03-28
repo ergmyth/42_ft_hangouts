@@ -6,9 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.school21.eleonard.data.network.api.IAuthApi
 import ru.school21.eleonard.data.network.api.IUsersApi
 import ru.school21.eleonard.Constants
+import ru.school21.eleonard.data.network.helpers.NetworkUtils
 import java.util.concurrent.TimeUnit
 
 object NetworkHolder {
@@ -19,8 +19,8 @@ object NetworkHolder {
 	var httpClient: OkHttpClient
 
 	init {
-		val interceptor = HttpLoggingInterceptor()
-		interceptor.level = HttpLoggingInterceptor.Level.BODY
+		val httpLoggingInterceptor = HttpLoggingInterceptor()
+		httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
 		val dispatcher = Dispatcher()
 		dispatcher.maxRequests = Constants.MAX_REQUESTS
@@ -34,7 +34,8 @@ object NetworkHolder {
 		httpClient = OkHttpClient().newBuilder()
 			.followRedirects(true)
 			.followSslRedirects(false)
-			.addInterceptor(interceptor)
+			.addInterceptor(httpLoggingInterceptor)
+			.addInterceptor(ConnectivityInterceptor())
 			.authenticator(ApiAuthenticator())
 			.dispatcher(dispatcher)
 			.connectTimeout(Constants.CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)

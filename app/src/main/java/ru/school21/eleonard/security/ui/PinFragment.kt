@@ -190,7 +190,7 @@ class PinFragment : Fragment() {
 			securityViewModel.currentPinState = PinState.DELETE
 			clearPin()
 			parentFragmentManager.popBackStack()
-			(requireActivity() as? MainActivityViewPagerManager)?.configureActivityForAuthorizedUser()
+			(requireActivity() as? MainActivityViewPagerManager)?.configureActivityMenu()
 		} else
 			handleInvalidPin()
 	}
@@ -205,7 +205,7 @@ class PinFragment : Fragment() {
 		when (securityViewModel.attemptsLeft) {
 			0 -> {
 				securityViewModel.resetData()
-				(requireActivity() as? MainActivityViewPagerManager)?.configureActivityForAuthorizedUser()
+				(requireActivity() as? MainActivityViewPagerManager)?.configureActivityMenu()
 			}
 			1 -> UtilsUI.makeCoolToast(resources.getString(R.string.pin_1_try_left), ToastStates.ERROR)
 			2 -> UtilsUI.makeCoolToast(resources.getString(R.string.pin_2_tries_left), ToastStates.ERROR)

@@ -1,32 +1,35 @@
 <resources>
     <string name="app_name" translatable="false">Eleonard</string>
 
+    <!-- Navigation -->
     <string name="bnv_hangouts">Contacts</string>
     <string name="bnv_companion">School info</string>
     <string name="bnv_proteins">Graphics</string>
     <string name="bnv_other">Other</string>
 
-    <string name="toolbar_title_contact_info_new">Новый контакт</string>
-
-    <string name="other_logout">Logout</string>
-
-    <string name="contacts_mine">My contacts</string>
-    <string name="contacts_favourite">Favourite</string>
-
-    <string name="dialog_logout_title">Do you really want to log out?</string>
-    <string name="dialog_logout_negative">Cancel</string>
-    <string name="dialog_logout_positive">Log out</string>
-
     <string name="main_back_pressed">Click again to exit</string>
 
+    <string name="toolbar_title_contact_info_new">New contact</string>
+
+    <!-- Toolbar functions -->
     <string name="toolbar_menu_search">Search</string>
     <string name="toolbar_menu_sort">Sort</string>
     <string name="toolbar_menu_filter">Filter</string>
 
-    <string name="auth_login">Login</string>
-    <string name="auth_password">Password</string>
-    <string name="auth_log_in">Log in</string>
-    <string name="auth_sign_up">Sign Up</string>
+    <!-- Progress bar -->
+    <string name="loading_state_contacts">Loading contact list…</string>
+    <string name="loading_message_receiving">Loading the required data…</string>
+    <string name="loading_message_error">Loading failed.</string>
+
+    <!-- Contacts -->
+    <string name="contacts_mine">My contacts</string>
+    <string name="contacts_favourite">Favourite</string>
+
+    <string name="contact_list_empty_message">Contact list is empty</string>
+    <string name="add_contact">New contact</string>
+    <string name="create_contact">Create</string>
+    <string name="default_required_field_message">Required</string>
+    <string name="phone_number_required_field_message">Phone number must be 10 digits</string>
 
     <string name="contact_address">Address</string>
     <string name="contact_name">Name</string>
@@ -40,16 +43,10 @@
     <string name="action_create">Create</string>
     <string name="action_recolor_header">Recolor title</string>
 
-    <string name="loading_state_contacts">Loading contact list…</string>
-    <string name="loading_message_receiving">Loading the required data…</string>
-    <string name="loading_message_error">Loading failed. Tap here to try again.</string>
+    <!-- School Info -->
+    <string name="response_no_such_user">User with such login does not exist!</string>
 
-    <string name="contact_list_empty_message">Contact list is empty</string>
-    <string name="add_contact">New contact</string>
-    <string name="create_contact">Create</string>
-    <string name="default_required_field_message">Required</string>
-    <string name="phone_number_required_field_message">Phone number must be 10 digits</string>
-
+    <!-- Night Mode -->
     <string name="night_mode">Night mode</string>
     <string name="night_mode_title">Select the desired setting</string>
     <string name="night_mode_system">System</string>
@@ -58,10 +55,12 @@
 
     <string name="security">Security</string>
 
+    <!-- Pin Code -->
     <string name="pin_toolbar_title">Pin code</string>
     <string name="pin_title_create">Create a pin code</string>
     <string name="pin_title_delete">Enter current pin code</string>
     <string name="pin_title_confirm">Confirm the pin code</string>
+
     <string name="pin_2_tries_left">Invalid pin code. Two tries left!</string>
     <string name="pin_1_try_left">Invalid pin code. Last try!</string>
     <string name="pin_not_valid">Invalid pin code. Try harder.</string>
@@ -69,4 +68,14 @@
     <string name="pin_deleted">Pin code successfully deleted.</string>
     <string name="pin_reset_data">All data has been deleted.</string>
 
+    <!-- Network -->
+    <string name="api_empty_data" translatable="false">Data is empty</string>
+    <string name="api_not_200" translatable="false">Status code is not 200</string>
+    <string name="api_empty_message" translatable="false">ErrorMessage is empty</string>
+    <string name="network_connection_error">Network connection error.</string>
+    <string name="server_500">Internal error. Try later.</string>
+    <string name="server_400">Request sending error. Try later.</string>
+    <string name="server_403">Request sending failed. Try later.</string>
+    <string name="server_404">Response getting error. Try later.</string>
+    <string name="default_error_message">Something wrong. Try later.</string>
 </resources>

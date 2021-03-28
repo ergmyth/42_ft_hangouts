@@ -21,7 +21,8 @@ internal class SecurityKey {
     }
 
     fun encrypt(token: String?): String? {
-        if (token == null) return null
+        if (token == null)
+            return null
         try {
             val cipher = getCipher(Cipher.ENCRYPT_MODE)
             val encrypted = cipher.doFinal(token.toByteArray())

@@ -43,15 +43,15 @@ internal class NightModeDialogFragment : DialogFragment() {
     }
 
     private fun initListeners() {
-        binding.rbSystem.setOnCheckedChangeListener { compoundButton, isChecked ->
+        binding.rbSystem.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         }
-        binding.rbTurnOff.setOnCheckedChangeListener { compoundButton, isChecked ->
+        binding.rbTurnOff.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
-        binding.rbTurnOn.setOnCheckedChangeListener { compoundButton, isChecked ->
+        binding.rbTurnOn.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked)
                 setNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }

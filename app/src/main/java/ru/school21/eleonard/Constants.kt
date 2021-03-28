@@ -17,7 +17,7 @@ object Constants {
 	const val READ_TIMEOUT_SECONDS = 60L
 	const val WRITE_TIMEOUT_SECONDS = 60L
 
-	const val HTTP_SUCCESSFULL = 200
+	const val HTTP_SUCCESSFUL = 200
 	const val HTTP_BAD_REQUEST = 400
 	const val HTTP_UNAUTHORIZED = 401
 	const val HTTP_FORBIDDEN = 403

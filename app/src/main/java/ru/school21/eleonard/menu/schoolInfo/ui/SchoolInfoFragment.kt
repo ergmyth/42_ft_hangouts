@@ -87,7 +87,10 @@ class SchoolInfoFragment : Fragment() {
 					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 				Status.ERROR -> {
-					UtilsUI.makeCoolToast(it.error ?: resources.getString(R.string.loading_message_error), ToastStates.ERROR)
+					if (it.error == resources.getString(R.string.server_404))
+						UtilsUI.makeCoolToast(resources.getString(R.string.response_no_such_user), ToastStates.ERROR)
+					else
+						UtilsUI.makeCoolToast(it.error ?: resources.getString(R.string.loading_message_error), ToastStates.ERROR)
 					(requireActivity() as? ProgressBarManager)?.finishLoading()
 				}
 			}

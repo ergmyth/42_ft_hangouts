@@ -31,10 +31,10 @@ class BaseApp : Application() {
 			else
 				instance.getSharedPreferences("ru.school21.eleonard-prefs", Context.MODE_PRIVATE)
 		}
+	}
 
-		init {
-			AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-		}
+	init {
+		AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 	}
 
 	override fun attachBaseContext(base: Context?) {

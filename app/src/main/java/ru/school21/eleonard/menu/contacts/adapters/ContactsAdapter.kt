@@ -23,11 +23,10 @@ class ContactsAdapter(
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         val curContact = contactList[position]
+        holder.binding.tvName.text = curContact.name
+        configureAvatar(curContact.avatar, holder.binding.ivAvatar)
 
-        holder.tvName.text = curContact.name
-        configureAvatar(curContact.avatar, holder.ivAvatar)
-
-        holder.rlContact.setOnClickListener {
+        holder.binding.rlContact.setOnClickListener {
             openContactFragment(curContact)
         }
     }
@@ -67,9 +66,5 @@ class ContactsAdapter(
         return contactList.size
     }
 
-    class ContactsViewHolder(binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
-        val ivAvatar: AppCompatImageView = binding.ivAvatar
-        val rlContact: RelativeLayout = binding.rlContact
-        val tvName: MaterialTextView = binding.tvName
-    }
+    class ContactsViewHolder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root)
 }

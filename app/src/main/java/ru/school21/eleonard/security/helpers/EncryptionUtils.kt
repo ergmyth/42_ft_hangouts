@@ -50,9 +50,8 @@ object EncryptionUtils {
     fun clear() {
         val keyStore = keyStore
         try {
-            if (keyStore!!.containsAlias(EncryptionKeyGenerator.KEY_ALIAS)) {
+            if (keyStore!!.containsAlias(EncryptionKeyGenerator.KEY_ALIAS))
                 keyStore.deleteEntry(EncryptionKeyGenerator.KEY_ALIAS)
-            }
         } catch (e: KeyStoreException) {
             e.printStackTrace()
         }

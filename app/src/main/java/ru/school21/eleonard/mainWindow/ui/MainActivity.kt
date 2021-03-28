@@ -44,9 +44,9 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 
 	override fun finishLoading() {
 		ongoingRequestsCounter--
-		when (ongoingRequestsCounter) {
-			0 -> binding.llLoading.hide()
-			1 -> binding.tvLoadingText.text = resources.getString(R.string.loading_message_receiving)
+		when {
+			ongoingRequestsCounter < 1 -> binding.llLoading.hide()
+			ongoingRequestsCounter == 1 -> binding.tvLoadingText.text = resources.getString(R.string.loading_message_receiving)
 			else -> binding.tvLoadingText.text = "${binding.tvLoadingText.text} ($ongoingRequestsCounter)"
 		}
 	}
@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 		binding.bnvMain.selectedItemId = R.id.menuItemOther
 	}
 
-	override fun configureActivityForNonAuthorizedUser() {
+	override fun configureActivityPin() {
 		//todo Решить проблему с адаптером при переключении на тёмную тему.
 		securityViewModel.currentPinState = PinState.LOGIN
 		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 1, isGuest = true)
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 		binding.cvToolbar.hide()
 	}
 
-	override fun configureActivityForAuthorizedUser() {
+	override fun configureActivityMenu() {
 		securityViewModel.currentPinState = if (isPinExist()) PinState.DELETE else PinState.CREATE
 		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 4, isGuest = false)
 		binding.bnvMain.show()
@@ -146,9 +146,9 @@ class MainActivity : AppCompatActivity(), MainActivityViewPagerManager, ToolbarM
 
 	private fun configureActivityByPin() {
 		if (isPinExist())
-			configureActivityForNonAuthorizedUser()
+			configureActivityPin()
 		else
-			configureActivityForAuthorizedUser()
+			configureActivityMenu()
 	}
 
 	private fun initBnvListener() {
