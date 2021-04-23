@@ -23,7 +23,7 @@ class ContactsAdapter(
 
     override fun onBindViewHolder(holder: ContactsViewHolder, position: Int) {
         val curContact = contactList[position]
-        holder.binding.tvName.text = curContact.name
+        holder.binding.tvName.text = if (curContact.name.isNotEmpty()) curContact.name else curContact.number
         configureAvatar(curContact.avatar, holder.binding.ivAvatar)
 
         holder.binding.rlContact.setOnClickListener {

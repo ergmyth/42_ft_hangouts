@@ -24,6 +24,10 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 	private lateinit var contactsViewModel: ContactsViewModel
 	private lateinit var groupAdapter: GroupAdapter
 
+	private val isFav: Boolean by lazy {
+		requireArguments().getBoolean("isFav")
+	}
+
 	private fun initViewModels() {
 		contactsViewModel = ViewModelProvider(requireParentFragment()).get(ContactsViewModel::class.java)
 	}
@@ -32,17 +36,9 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 		super.onViewCreated(view, savedInstanceState)
 
 		initViewModels()
-		initValues()
 		configureViews()
 		initListeners()
 		initObservers()
-	}
-
-	private fun initValues() {
-		if (contactsViewModel.isFavoriteContactsWindow) {
-			contactsViewModel.favoriteContactList.value = splitToListsByFirstLetterOfName(contactsViewModel.getContacts(isFavorite = true))
-		} else
-			contactsViewModel.contactsList.value = splitToListsByFirstLetterOfName(contactsViewModel.getContacts(isFavorite = false))
 	}
 
 	private fun splitToListsByFirstLetterOfName(realmContactList: List<ContactRealmModel>): MutableList<MutableList<ContactRealmModel>> {
@@ -50,13 +46,27 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 		val sortedRealmList = realmContactList.sortedBy { it.name }
 		var currentLetterList = mutableListOf<ContactRealmModel>()
 		for (contact in sortedRealmList) {
-			when {
-				currentLetterList.isEmpty() -> currentLetterList.add(contact)
-				contact.name.first() == currentLetterList[0].name.first() -> currentLetterList.add(contact)
-				else -> {
-					contactLists.add(currentLetterList)
-					currentLetterList = mutableListOf()
-					currentLetterList.add(contact)
+			if (isFav) {
+				if (contact.isFavorite) {
+					when {
+						currentLetterList.isEmpty() -> currentLetterList.add(contact)
+						contact.name.first() == currentLetterList[0].name.first() -> currentLetterList.add(contact)
+						else -> {
+							contactLists.add(currentLetterList)
+							currentLetterList = mutableListOf()
+							currentLetterList.add(contact)
+						}
+					}
+				}
+			} else {
+				when {
+					currentLetterList.isEmpty() -> currentLetterList.add(contact)
+					contact.name.first() == currentLetterList[0].name.first() -> currentLetterList.add(contact)
+					else -> {
+						contactLists.add(currentLetterList)
+						currentLetterList = mutableListOf()
+						currentLetterList.add(contact)
+					}
 				}
 			}
 		}
@@ -73,21 +83,18 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 		binding.btnAddContact.setOnClickListener {
 			parentFragmentManager
 				.beginTransaction()
-				.add(R.id.flContactsRootView, ContactInfoFragment())
+				.add(R.id.flContactsRootView, ContactInfoFragment().apply { arguments = Bundle().apply { putBoolean("isFav", isFav) } })
 				.addToBackStack(null)
 				.commit()
 		}
 	}
 
 	private fun initObservers() {
-		if (contactsViewModel.isFavoriteContactsWindow)
-			observeOnContactList(contactsViewModel.favoriteContactList)
-		else
-			observeOnContactList(contactsViewModel.contactsList)
+		observeOnContactList(contactsViewModel.contactsList)
 	}
 
-	private fun observeOnContactList(contactList: MutableLiveData<MutableList<MutableList<ContactRealmModel>>>) {
-		contactList.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+	private fun observeOnContactList(contactList: MutableLiveData<MutableList<ContactRealmModel>>) {
+		contactList.observe(viewLifecycleOwner, {
 			if (it.isEmpty()) {
 				binding.tvNoItemsMessage.show()
 				binding.rvGroups.hide()
@@ -99,16 +106,17 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 		})
 	}
 
-	private fun configureGroupAdapter(contactLists: MutableList<MutableList<ContactRealmModel>>) {
+	private fun configureGroupAdapter(contactLists: MutableList<ContactRealmModel>) {
+		val lists = splitToListsByFirstLetterOfName(contactLists)
 		if (binding.rvGroups.adapter == null) {
 			binding.rvGroups.setHasFixedSize(true)
 			groupAdapter = GroupAdapter(
-				contactLists = contactLists,
+				contactLists = lists,
 				fragmentManager = parentFragmentManager,
 				contactsViewModel = contactsViewModel
 			)
 			binding.rvGroups.adapter = groupAdapter
 		} else
-			groupAdapter.update(contactLists)
+			groupAdapter.update(lists)
 	}
 }

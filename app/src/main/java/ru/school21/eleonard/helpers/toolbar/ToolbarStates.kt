@@ -12,9 +12,10 @@ enum class ToolbarStates(
 ) {
 	STATE_CONTACTS_MAIN(
 		isBackBtnVisible = false,
-		isSearchVisible = true,
-		isFilterVisible = true,
-		isSortVisible = true,
+		//todo
+		isSearchVisible = false,
+		isFilterVisible = false,
+		isSortVisible = false,
 		title = BaseApp.getInstance().getString(R.string.bnv_hangouts),
 	),
 	STATE_CONTACT_INFO(
@@ -29,7 +30,7 @@ enum class ToolbarStates(
 		isSearchVisible = false,
 		isFilterVisible = false,
 		isSortVisible = false,
-		title = "",
+		title = BaseApp.getInstance().getString(R.string.toolbar_title_contact_info),
 	),
 	STATE_SCHOOL_MAIN(
 		isBackBtnVisible = false,

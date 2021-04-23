@@ -23,6 +23,14 @@ class DbUtils @Inject constructor(var realm: Realm) {
 			.findAll() ?: listOf()
 	}
 
+	fun deleteContact(contactId: String) {
+		if (!realm.isInTransaction)
+			realm.beginTransaction()
+		realm.where(ContactRealmModel::class.java).equalTo("contactId", contactId).findAll().deleteAllFromRealm()
+		realm.commitTransaction()
+	}
+
+
 	fun purgeBase() {
 		try {
 			GlobalScope.launch(Dispatchers.Main) {

@@ -16,20 +16,21 @@ class RealmUtils {
 		fun provideRealm(): Realm
 	}
 
+	var realm: Realm
 	companion object {
-		private var realm: Realm
 		private var instance: RealmUtils = RealmUtils()
 
 		fun getInstance(): RealmUtils {
 			return instance
 		}
 
-		init {
-			val appContext = BaseApp.getInstance().applicationContext ?: throw IllegalStateException()
-			val hiltEntryPoint = EntryPointAccessors.fromApplication(appContext, RealmUtilsEntryPoint::class.java)
+	}
 
-			realm = hiltEntryPoint.provideRealm()
-		}
+	init {
+		val appContext = BaseApp.getInstance().applicationContext ?: throw IllegalStateException()
+		val hiltEntryPoint = EntryPointAccessors.fromApplication(appContext, RealmUtilsEntryPoint::class.java)
+
+		realm = hiltEntryPoint.provideRealm()
 	}
 
 	fun insertOrUpdate(realmObject: RealmModel) {

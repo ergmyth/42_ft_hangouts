@@ -50,7 +50,6 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts), ContactsViewP
 		binding.vpContacts.adapter = ContactsViewPagerStateAdapter(
 			fragment = this@ContactsFragment,
 			size = 2,
-			viewModel = contactsViewModel
 		)
 
 		TabLayoutMediator(binding.tlContacts, binding.vpContacts) { tab, position ->
@@ -59,14 +58,6 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts), ContactsViewP
 				FAVOURITE_CONTACTS_ITEM_INDEX -> tab.text = resources.getString(R.string.contacts_favourite)
 			}
 		}.attach()
-		binding.tlContacts.addOnTabSelectedListener(object : OnTabSelectedListener {
-			override fun onTabSelected(tab: TabLayout.Tab) {
-				contactsViewModel.isFavoriteContactsWindow = tab.position != 0
-			}
-
-			override fun onTabUnselected(tab: TabLayout.Tab) {}
-			override fun onTabReselected(tab: TabLayout.Tab) {}
-		})
 	}
 
 	companion object {

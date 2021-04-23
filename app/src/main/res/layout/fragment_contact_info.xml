@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -45,9 +45,7 @@
             android:layout_marginVertical="4dp"
             android:hint="@string/contact_phone_number"
             app:errorEnabled="true"
-            app:hintTextAppearance="@style/Toolbar.NormalText"
-            app:prefixText="+7"
-            app:prefixTextColor="@color/cadet_blue">
+            app:hintTextAppearance="@style/Toolbar.NormalText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPhone"
@@ -56,10 +54,82 @@
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:longClickable="true"
-                android:maxLength="10"
+                android:maxLength="18"
                 android:singleLine="true"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAddress"
+            style="@style/OutlinedTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:hint="@string/contact_address"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/Toolbar.NormalText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:longClickable="true"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPosition"
+            style="@style/OutlinedTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:hint="@string/contact_position"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/Toolbar.NormalText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:longClickable="true"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCompany"
+            style="@style/OutlinedTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:hint="@string/contact_company"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/Toolbar.NormalText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:longClickable="true"
+                android:maxLength="50"
+                android:singleLine="true"
+                android:textSize="16sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <include
+            android:id="@+id/layoutActions"
+            layout="@layout/layout_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCreateContact"
@@ -68,4 +138,4 @@
             android:text="@string/create_contact"
             android:textSize="16sp" />
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</ScrollView>

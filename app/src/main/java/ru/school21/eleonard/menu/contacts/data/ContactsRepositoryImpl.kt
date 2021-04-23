@@ -15,4 +15,8 @@ class ContactsRepositoryImpl @Inject constructor(
 		else
 			dbUtils.getAllContacts()
 	}
+
+	override fun deleteContact(contactId: String) {
+		dbUtils.deleteContact(contactId)
+	}
 }
