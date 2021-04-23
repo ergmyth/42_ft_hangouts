@@ -3,60 +3,39 @@ package ru.school21.eleonard.security.ui
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AnimationUtils
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.BaseApp
 import ru.school21.eleonard.Constants
 import ru.school21.eleonard.R
 import ru.school21.eleonard.databinding.FragmentPinBinding
-import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
+import ru.school21.eleonard.helpers.base.BaseFragment
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
 import ru.school21.eleonard.helpers.utils.ToastStates
 import ru.school21.eleonard.helpers.utils.UtilsUI
 import ru.school21.eleonard.mainWindow.MainActivityViewPagerManager
-import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.security.adapter.PinAdapter
 import ru.school21.eleonard.security.helpers.EncryptionUtils
 import ru.school21.eleonard.security.helpers.PinState
 import ru.school21.eleonard.security.viewModels.SecurityViewModel
 
 @AndroidEntryPoint
-class PinFragment : Fragment() {
-	//todo починить отображение при скрытой навигации
-	private lateinit var binding: FragmentPinBinding
+class PinFragment : BaseFragment(R.layout.fragment_pin) {
+	override val binding by viewBinding(FragmentPinBinding::bind)
+	override val hasOptionMenu: Boolean = true
+	override val toolbarState = ToolbarStates.STATE_PIN
+
 	private lateinit var securityViewModel: SecurityViewModel
 	private lateinit var pinAdapter: PinAdapter
-
-	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		super.onCreateOptionsMenu(menu, inflater)
-		ToolbarConfigurator().configureToolbar(
-			menu,
-			inflater,
-			requireActivity() as? ToolbarManager,
-			ToolbarStates.STATE_PIN,
-			resources.getString(R.string.pin_toolbar_title)
-		)
-	}
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {
-		binding = FragmentPinBinding.inflate(layoutInflater, container, false)
-		securityViewModel = ViewModelProvider(requireActivity()).get(SecurityViewModel::class.java)
-		securityViewModel.attemptsLeft = PIN_ATTEMPTS
-		return binding.root
-	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		securityViewModel = ViewModelProvider(requireActivity()).get(SecurityViewModel::class.java)
+		securityViewModel.attemptsLeft = PIN_ATTEMPTS
 		initAdapter()
 		configureViews()
 		initListeners()
-		setHasOptionsMenu(true)
 	}
 
 	private fun initAdapter() {

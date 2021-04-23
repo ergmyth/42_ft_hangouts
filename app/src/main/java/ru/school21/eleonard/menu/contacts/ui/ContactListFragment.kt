@@ -2,34 +2,27 @@ package ru.school21.eleonard.menu.contacts.ui
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.R
 import ru.school21.eleonard.data.db.realmModels.ContactRealmModel
 import ru.school21.eleonard.databinding.FragmentContactListBinding
-import ru.school21.eleonard.helpers.hide
-import ru.school21.eleonard.helpers.show
+import ru.school21.eleonard.helpers.base.BaseFragment
+import ru.school21.eleonard.helpers.toolbar.ToolbarStates
+import ru.school21.eleonard.helpers.utils.hide
+import ru.school21.eleonard.helpers.utils.show
 import ru.school21.eleonard.menu.contacts.adapters.GroupAdapter
 import ru.school21.eleonard.menu.contacts.viewModels.ContactsViewModel
 
 @AndroidEntryPoint
-class ContactListFragment : Fragment() {
-	private lateinit var binding: FragmentContactListBinding
+class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
+	override val binding by viewBinding(FragmentContactListBinding::bind)
+	override val hasOptionMenu: Boolean = false
+	override val toolbarState = ToolbarStates.STATE_CONTACT_INFO
+
 	private lateinit var contactsViewModel: ContactsViewModel
 	private lateinit var groupAdapter: GroupAdapter
-
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {
-		binding = FragmentContactListBinding.inflate(layoutInflater, container, false)
-		initViewModels()
-		return binding.root
-	}
 
 	private fun initViewModels() {
 		contactsViewModel = ViewModelProvider(requireParentFragment()).get(ContactsViewModel::class.java)
@@ -38,6 +31,7 @@ class ContactListFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		initViewModels()
 		initValues()
 		configureViews()
 		initListeners()

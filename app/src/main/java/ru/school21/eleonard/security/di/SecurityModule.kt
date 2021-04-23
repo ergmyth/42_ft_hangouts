@@ -5,10 +5,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import ru.school21.eleonard.data.db.DbUtils
-import ru.school21.eleonard.security.data.SecurityRepository
+import ru.school21.eleonard.security.domain.SecurityRepository
 import ru.school21.eleonard.security.data.SecurityRepositoryImpl
 import ru.school21.eleonard.security.domain.ResetDataUseCase
-import ru.school21.eleonard.security.domain.ResetDataUseCaseImpl
+import ru.school21.eleonard.security.data.ResetDataUseCaseImpl
 
 @Module
 @InstallIn(ApplicationComponent::class)

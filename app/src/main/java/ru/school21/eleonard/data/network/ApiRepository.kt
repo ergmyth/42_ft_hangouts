@@ -1,6 +1,6 @@
 package ru.school21.eleonard.data.network
 
-import ru.school21.eleonard.data.network.api.IUsersApi
+import ru.school21.eleonard.data.network.api.IUsersDao
 import ru.school21.eleonard.data.network.api.models.UserResponse
 import javax.inject.Inject
 import io.reactivex.Observable
@@ -8,9 +8,9 @@ import ru.school21.eleonard.data.network.helpers.ResponseWrapper
 
 
 class ApiRepository @Inject constructor(
-	val usersApi: IUsersApi,
+	val usersDao: IUsersDao,
 ) {
 	fun getUserInfo(userName: String): Observable<ResponseWrapper<UserResponse>> {
-		return usersApi.getUserInfo(user = userName)
+		return usersDao.getUserInfo(user = userName)
 	}
 }

@@ -10,8 +10,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import ru.school21.eleonard.data.network.ApiRepository
 import ru.school21.eleonard.data.network.NetworkHolder
-import ru.school21.eleonard.data.network.api.IAuthApi
-import ru.school21.eleonard.data.network.api.IUsersApi
+import ru.school21.eleonard.data.network.api.IAuthDao
+import ru.school21.eleonard.data.network.api.IUsersDao
 import ru.school21.eleonard.Constants
 import ru.school21.eleonard.data.network.repositories.CompositeDisposableRepository
 import ru.school21.eleonard.data.network.repositories.CompositeDisposableRepositoryImpl
@@ -56,13 +56,13 @@ object NetworkModule {
 	}
 
 	@Provides
-	fun provideUserApi(retrofit: Retrofit): IUsersApi {
-		return retrofit.create(IUsersApi::class.java)
+	fun provideUserApi(retrofit: Retrofit): IUsersDao {
+		return retrofit.create(IUsersDao::class.java)
 	}
 
 	@Provides
-	fun provideAuthApi(retrofit: Retrofit): IAuthApi {
-		return retrofit.create(IAuthApi::class.java)
+	fun provideAuthApi(retrofit: Retrofit): IAuthDao {
+		return retrofit.create(IAuthDao::class.java)
 	}
 
 	@Singleton

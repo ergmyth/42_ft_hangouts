@@ -7,6 +7,7 @@ import ru.school21.eleonard.data.network.NetworkHolder
 import ru.school21.eleonard.data.network.TokenRepository
 import ru.school21.eleonard.helpers.utils.ToastStates
 import ru.school21.eleonard.helpers.utils.UtilsUI
+import ru.school21.eleonard.security.domain.SecurityRepository
 import ru.school21.eleonard.security.helpers.EncryptionUtils
 import javax.inject.Inject
 

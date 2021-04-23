@@ -3,44 +3,23 @@ package ru.school21.eleonard.menu.other.ui
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.R
 import ru.school21.eleonard.databinding.FragmentOtherBinding
+import ru.school21.eleonard.helpers.base.BaseFragment
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
-import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
-import ru.school21.eleonard.mainWindow.ProgressBarManager
-import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.menu.other.viewModels.SettingsViewModel
 import ru.school21.eleonard.security.ui.PinFragment
 
 @AndroidEntryPoint
-class OtherFragment : Fragment() {
-	private lateinit var binding: FragmentOtherBinding
+class OtherFragment : BaseFragment(R.layout.fragment_other) {
+	override val binding by viewBinding(FragmentOtherBinding::bind)
+	override val hasOptionMenu: Boolean = true
+	override val toolbarState = ToolbarStates.STATE_OTHER_MAIN
+
 	private lateinit var settingsViewModel: SettingsViewModel
-
-	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-		super.onCreateOptionsMenu(menu, inflater)
-		ToolbarConfigurator().configureToolbar(
-			menu,
-			inflater,
-			requireActivity() as? ToolbarManager,
-			ToolbarStates.STATE_OTHER_MAIN,
-			resources.getString(R.string.bnv_other)
-		)
-	}
-
-	override fun onCreateView(
-		inflater: LayoutInflater,
-		container: ViewGroup?,
-		savedInstanceState: Bundle?
-	): View {
-		binding = FragmentOtherBinding.inflate(layoutInflater, container, false)
-		initViewModels()
-		return binding.root
-	}
 
 	private fun initViewModels() {
 		settingsViewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
@@ -49,10 +28,10 @@ class OtherFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		initViewModels()
 		configureViews()
 		initListeners()
 		initObservers()
-		setHasOptionsMenu(true)
 	}
 
 	private fun initObservers() {

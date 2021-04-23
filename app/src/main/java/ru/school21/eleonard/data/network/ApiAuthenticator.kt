@@ -5,7 +5,7 @@ import okhttp3.Authenticator
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
-import ru.school21.eleonard.data.network.api.IAuthApi
+import ru.school21.eleonard.data.network.api.IAuthDao
 import ru.school21.eleonard.data.network.api.models.AccessTokenRequest
 import ru.school21.eleonard.data.network.api.models.AccessTokenResponse
 import ru.school21.eleonard.Constants
@@ -44,7 +44,7 @@ class ApiAuthenticator : Authenticator {
 				grantType = Constants.GRANT_TYPE,
 			)
 			try {
-				NetworkHolder.authenticatorRetrofitClient.create(IAuthApi::class.java).getAccessToken(accessTokenRequest).execute()
+				NetworkHolder.authenticatorRetrofitClient.create(IAuthDao::class.java).getAccessToken(accessTokenRequest).execute()
 			} catch (e: IOException) {
 				null
 			}

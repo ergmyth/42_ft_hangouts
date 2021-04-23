@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         app:cardElevation="10dp"
         app:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@id/llLoading"
+        app:layout_constraintBottom_toTopOf="@id/vpMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,36 +30,6 @@
             app:titleTextAppearance="@style/Toolbar.TitleText" />
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/llLoading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/loadingBackground"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/vpMain"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cvToolbar">
-
-        <ProgressBar
-            android:id="@+id/pbLoading"
-            android:layout_width="@dimen/loading_icons_size"
-            android:layout_height="@dimen/loading_icons_size"
-            android:clickable="false" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvLoadingText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/white"
-            tools:text="Loading text..." />
-    </LinearLayout>
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpMain"
         android:layout_width="match_parent"
@@ -67,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/bnvMain"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llLoading" />
+        app:layout_constraintTop_toBottomOf="@id/cvToolbar" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvMain"

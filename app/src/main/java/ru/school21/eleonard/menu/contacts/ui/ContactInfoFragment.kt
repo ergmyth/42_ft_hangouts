@@ -2,23 +2,27 @@ package ru.school21.eleonard.menu.contacts.ui
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.R
 import ru.school21.eleonard.data.db.RealmUtils
 import ru.school21.eleonard.data.db.realmModels.ContactRealmModel
 import ru.school21.eleonard.databinding.FragmentContactInfoBinding
-import ru.school21.eleonard.helpers.hide
+import ru.school21.eleonard.helpers.base.BaseFragment
+import ru.school21.eleonard.helpers.utils.hide
 import ru.school21.eleonard.helpers.toolbar.ToolbarConfigurator
 import ru.school21.eleonard.helpers.toolbar.ToolbarStates
+import ru.school21.eleonard.helpers.utils.setPhoneFormat
 import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.menu.contacts.viewModels.ContactsViewModel
 
 @AndroidEntryPoint
-class ContactInfoFragment : Fragment() {
-	private lateinit var binding: FragmentContactInfoBinding
-	private lateinit var contactsViewModel: ContactsViewModel
+class ContactInfoFragment : BaseFragment(R.layout.fragment_contact_info) {
+	override val binding by viewBinding(FragmentContactInfoBinding::bind)
+	override val hasOptionMenu: Boolean = true
+	override val toolbarState = ToolbarStates.STATE_CONTACT_INFO
+
+	lateinit var contactsViewModel: ContactsViewModel
 
 	override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 		super.onCreateOptionsMenu(menu, inflater)
@@ -26,23 +30,23 @@ class ContactInfoFragment : Fragment() {
 			menu,
 			inflater,
 			requireActivity() as? ToolbarManager,
-			ToolbarStates.STATE_CONTACT_INFO,
+			defineToolbarState(),
 			defineToolbarTitle()
 		)
 	}
 
-	private fun defineToolbarTitle(): String {
-		return if (contactsViewModel.curContact == null) {
-			resources.getString(R.string.toolbar_title_contact_info_new)
-		} else {
-			contactsViewModel.curContact?.name!!
-		}
+	private fun defineToolbarState(): ToolbarStates {
+		return if (contactsViewModel.curContact == null)
+			ToolbarStates.STATE_CONTACT_INFO
+		else
+			ToolbarStates.STATE_CONTACT_INFO_CREATED
 	}
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-		binding = FragmentContactInfoBinding.inflate(inflater, container, false)
-		initViewModels()
-		return binding.root
+	private fun defineToolbarTitle(): String {
+		return if (contactsViewModel.curContact == null)
+			""
+		else
+			contactsViewModel.curContact?.name!!
 	}
 
 	private fun initViewModels() {
@@ -52,6 +56,7 @@ class ContactInfoFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		initViewModels()
 		configureViews()
 		initListeners()
 	}
@@ -117,17 +122,16 @@ class ContactInfoFragment : Fragment() {
 	}
 
 	private fun configureViews() {
-		setHasOptionsMenu(true)
 		if (contactsViewModel.curContact == null)
 			configureViewsForNewContact()
 		else
 			configureViewsForExistingContact()
-		//todo Прикрутить маску для телефона
 	}
 
 	private fun configureViewsForExistingContact() {
 		binding.btnCreateContact.hide()
 		binding.tilName.hide()
+		binding.etPhone.setPhoneFormat()
 		binding.etPhone.setText(contactsViewModel.curContact?.number)
 		binding.etPhone.isEnabled = false
 	}
