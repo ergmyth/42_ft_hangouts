@@ -12,7 +12,6 @@ import ru.school21.eleonard.menu.other.ui.OtherFragment
 class MainViewPagerStateAdapter(
 	appCompatActivity: AppCompatActivity,
 	private val size: Int,
-	private val isGuest: Boolean
 ) : FragmentStateAdapter(appCompatActivity) {
 
 	override fun getItemCount(): Int {
@@ -20,13 +19,12 @@ class MainViewPagerStateAdapter(
 	}
 
 	override fun createFragment(position: Int): Fragment {
-		if (isGuest)
-			return PinFragment()
 		return when (position) {
 			0 -> ContactsFragment()
 			1 -> SchoolInfoFragment()
 			2 -> GraphicsFragment()
-			else -> OtherFragment()
+			3 -> OtherFragment()
+			else -> PinFragment()
 		}
 	}
 }

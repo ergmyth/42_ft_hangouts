@@ -6,11 +6,11 @@ import ru.school21.eleonard.data.network.helpers.Event
 
 
 interface ErrorHandlerRepository {
-	fun <T> handleHttpException(functionName: String?, httpExceptionCode: Int, liveData: MutableLiveData<Event<T>>)
+	fun handleHttpException(httpExceptionCode: Int): String
 
-	fun <T> handleErrorMessage(functionName: String?, errorMessage: String, liveData: MutableLiveData<Event<T>>)
+	fun handleErrorMessage(errorMessage: String): String
 
-	fun <T> handleApiError(functionName: String?, apiError: ApiErrors, liveData: MutableLiveData<Event<T>>)
+	fun handleApiError(apiError: ApiErrors): String
 
-	fun <T> handleErrorResponse(e: Throwable, functionName: String?, liveData: MutableLiveData<Event<T>>)
+	fun handleErrorResponse(e: Throwable)
 }

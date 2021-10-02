@@ -9,11 +9,13 @@
     android:paddingHorizontal="24dp"
     android:paddingVertical="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivAvatar"
         android:layout_width="@dimen/layout_params_avatar_in_list"
         android:layout_height="@dimen/layout_params_avatar_in_list"
-        android:layout_marginEnd="8dp"/>
+        android:layout_marginEnd="8dp"
+        android:adjustViewBounds="true"
+        app:shapeAppearanceOverlay="@style/roundedImageViewProfile" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvName"

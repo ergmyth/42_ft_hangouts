@@ -10,6 +10,17 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ae1fc90fed825aa9e683864cc73235f/jetified-Toasty-1.4.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ae1fc90fed825aa9e683864cc73235f/jetified-Toasty-1.4.2/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ae1fc90fed825aa9e683864cc73235f/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e7e585f230954aa3b976cea0f5911ea7/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd52b72c7dd6bf9ca09dac799cb6d0a2/jetified-Toasty-1.4.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd52b72c7dd6bf9ca09dac799cb6d0a2/jetified-Toasty-1.4.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd52b72c7dd6bf9ca09dac799cb6d0a2/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255d4b35c64692c7a4b90f785b09e581/jetified-Toasty-1.4.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255d4b35c64692c7a4b90f785b09e581/jetified-Toasty-1.4.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/255d4b35c64692c7a4b90f785b09e581/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0b2f0ee58499b266828e1135afa8bb20/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74ce31eefea92ecdec87952371ce1dc0/jetified-Toasty-1.4.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74ce31eefea92ecdec87952371ce1dc0/jetified-Toasty-1.4.2/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/74ce31eefea92ecdec87952371ce1dc0/jetified-Toasty-1.4.2/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

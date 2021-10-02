@@ -13,6 +13,7 @@ class ContactsViewModel @ViewModelInject constructor(
 ) : ViewModel() {
     var contactsList = MutableLiveData<MutableList<ContactRealmModel>>()
     var curContact: ContactRealmModel? = null
+    var curAvatar = MutableLiveData<String>()
     init {
         contactsList.value = getContacts(false).toMutableList()
     }

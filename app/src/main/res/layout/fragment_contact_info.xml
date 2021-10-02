@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvContactInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOnBackground"
@@ -12,8 +13,54 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivAvatarProfile"
+                android:layout_width="144dp"
+                android:layout_height="144dp"
+                android:layout_marginBottom="16dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageViewProfile"
+                app:srcCompat="@drawable/ic_avatar_default" />
+
+            <ImageView
+                android:id="@+id/ivSetAvatarBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/ivAvatarProfile"
+                app:layout_constraintEnd_toEndOf="@id/ivAvatarProfile"
+                app:layout_constraintStart_toEndOf="@id/ivAvatarProfile"
+                app:layout_constraintTop_toTopOf="@id/ivAvatarProfile"
+                app:srcCompat="@drawable/ic_prof_camera_circle" />
+
+            <ImageView
+                android:id="@+id/ivSetAvatarIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="@id/ivSetAvatarBackground"
+                app:layout_constraintEnd_toEndOf="@id/ivSetAvatarBackground"
+                app:layout_constraintStart_toStartOf="@id/ivSetAvatarBackground"
+                app:layout_constraintTop_toTopOf="@id/ivSetAvatarBackground"
+                app:srcCompat="@drawable/ic_profile_camera" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            android:id="@+id/layoutActions"
+            layout="@layout/layout_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
@@ -51,7 +98,7 @@
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionDone"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:longClickable="true"
                 android:maxLength="18"
@@ -125,12 +172,6 @@
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <include
-            android:id="@+id/layoutActions"
-            layout="@layout/layout_actions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCreateContact"
             android:layout_width="match_parent"
@@ -138,4 +179,4 @@
             android:text="@string/create_contact"
             android:textSize="16sp" />
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

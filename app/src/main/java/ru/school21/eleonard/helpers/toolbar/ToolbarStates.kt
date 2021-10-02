@@ -53,6 +53,13 @@ enum class ToolbarStates(
 		isSortVisible = false,
 		title = BaseApp.getInstance().getString(R.string.bnv_other),
 	),
+	STATE_CHAT_MAIN (
+		isBackBtnVisible = true,
+		isSearchVisible = true,
+		isFilterVisible = false,
+		isSortVisible = false,
+		title = BaseApp.getInstance().getString(R.string.toolbar_title_chat),
+	),
 	STATE_PIN (
 		isBackBtnVisible = true,
 		isSearchVisible = false,

@@ -65,6 +65,7 @@ class OtherFragment : BaseFragment(R.layout.fragment_other) {
 			//todo открывать другой фрагмент где будет пин и прочее
 			childFragmentManager
 				.beginTransaction()
+				.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
 				.add(binding.root.id, PinFragment())
 				.addToBackStack(null)
 				.commit()

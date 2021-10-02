@@ -1,42 +1,56 @@
 package ru.school21.eleonard.mainWindow.ui
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.theartofdev.edmodo.cropper.CropImage
 import dagger.hilt.android.AndroidEntryPoint
 import ru.school21.eleonard.BaseApp
 import ru.school21.eleonard.Constants
 import ru.school21.eleonard.R
 import ru.school21.eleonard.databinding.ActivityMainBinding
 import ru.school21.eleonard.helpers.base.BaseActivity
-import ru.school21.eleonard.helpers.utils.hide
-import ru.school21.eleonard.helpers.utils.show
-import ru.school21.eleonard.helpers.toolbar.ToolbarStates
+import ru.school21.eleonard.helpers.utils.*
 import ru.school21.eleonard.mainWindow.KeyboardManager
 import ru.school21.eleonard.mainWindow.MainActivityViewPagerManager
-import ru.school21.eleonard.mainWindow.ToolbarManager
 import ru.school21.eleonard.mainWindow.adapters.MainViewPagerStateAdapter
+import ru.school21.eleonard.menu.contacts.viewModels.ContactsViewModel
 import ru.school21.eleonard.security.helpers.PinState
 import ru.school21.eleonard.security.viewModels.SecurityViewModel
-import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity(), MainActivityViewPagerManager, KeyboardManager {
 	private lateinit var binding: ActivityMainBinding
 	private lateinit var securityViewModel: SecurityViewModel
+	private lateinit var contactsViewModel: ContactsViewModel
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		securityViewModel = ViewModelProvider(this).get(SecurityViewModel::class.java)
+		contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
 		configureViews()
 		initBnvListener()
+		ProcessLifecycleOwner.get().lifecycle.addObserver(AppLifecycleListener())
+	}
+
+	class AppLifecycleListener : LifecycleObserver {
+
+		@OnLifecycleEvent(Lifecycle.Event.ON_START)
+		fun onMoveToForeground() {
+			val lockedTime = BaseApp.getSharedPref().getLong(Constants.SP_LOCKED_TIME, 0L)
+			if (lockedTime != 0L)
+				UtilsUI.makeCoolToast(UtilsUI.convertTimestampToDate(lockedTime), ToastStates.NORMAL)
+		}
+
+		@OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+		fun onMoveToBackground() {
+			BaseApp.getSharedPref().edit().putLong(Constants.SP_LOCKED_TIME, System.currentTimeMillis()).apply()
+		}
 	}
 
 	override fun onStop() {
@@ -44,15 +58,33 @@ class MainActivity : BaseActivity(), MainActivityViewPagerManager, KeyboardManag
 		configureActivityByPin()
 	}
 
-	override fun openCameras() {
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+		super.onActivityResult(requestCode, resultCode, data)
+		when (requestCode) {
+			CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+				processCroppedPhoto(resultCode, data)
+			}
+		}
+	}
+
+	private fun processCroppedPhoto(resultCode: Int, data: Intent?) {
+		val result = CropImage.getActivityResult(data)
+		if (resultCode == Activity.RESULT_OK) {
+			contactsViewModel.curAvatar.value = result.uri.toString()
+		} else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+			UtilsUI.makeCoolToast(result.error.message.toString(), ToastStates.ERROR)
+		}
+	}
+
+	override fun openContacts() {
 		binding.bnvMain.selectedItemId = R.id.menuItemContacts
 	}
 
-	override fun openMap() {
+	override fun openSchool() {
 		binding.bnvMain.selectedItemId = R.id.menuItemSchoolInfo
 	}
 
-	override fun openMultiplayer() {
+	override fun openGraphics() {
 		binding.bnvMain.selectedItemId = R.id.menuItemGraphics
 	}
 
@@ -60,23 +92,26 @@ class MainActivity : BaseActivity(), MainActivityViewPagerManager, KeyboardManag
 		binding.bnvMain.selectedItemId = R.id.menuItemOther
 	}
 
+	override fun openPin() {
+		binding.bnvMain.selectedItemId = R.id.menuItemPin
+	}
+
 	override fun configureActivityPin() {
 		securityViewModel.currentPinState = PinState.LOGIN
-		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 1, isGuest = true)
 		binding.bnvMain.hide()
 		binding.toolbar.hide()
 	}
 
 	override fun configureActivityMenu() {
 		securityViewModel.currentPinState = if (isPinExist()) PinState.DELETE else PinState.CREATE
-		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 4, isGuest = false)
+		binding.vpMain.isUserInputEnabled = false
 		binding.bnvMain.show()
 		binding.toolbar.show()
-		openCameras()
 	}
 
 	private fun configureViews() {
 		setSupportActionBar(binding.toolbar)
+		binding.vpMain.adapter = MainViewPagerStateAdapter(appCompatActivity = this@MainActivity, size = 5)
 		binding.vpMain.isUserInputEnabled = false
 		binding.toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.textColor))
 		configureActivityByPin()

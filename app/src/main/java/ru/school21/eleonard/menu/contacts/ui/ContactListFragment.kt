@@ -29,7 +29,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 	}
 
 	private fun initViewModels() {
-		contactsViewModel = ViewModelProvider(requireParentFragment()).get(ContactsViewModel::class.java)
+		contactsViewModel = ViewModelProvider(requireActivity()).get(ContactsViewModel::class.java)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,6 +83,7 @@ class ContactListFragment : BaseFragment(R.layout.fragment_contact_list) {
 		binding.btnAddContact.setOnClickListener {
 			parentFragmentManager
 				.beginTransaction()
+				.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
 				.add(R.id.flContactsRootView, ContactInfoFragment().apply { arguments = Bundle().apply { putBoolean("isFav", isFav) } })
 				.addToBackStack(null)
 				.commit()

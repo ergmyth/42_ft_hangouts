@@ -11,7 +11,7 @@ import ru.school21.eleonard.mainWindow.KeyboardManager
 import ru.school21.eleonard.mainWindow.ToolbarManager
 
 abstract class BaseFragment(@LayoutRes val contentLayoutId: Int) : Fragment() {
-    abstract val binding: ViewBinding
+	abstract val binding: ViewBinding
     abstract val hasOptionMenu: Boolean
     abstract val toolbarState: ToolbarStates
 

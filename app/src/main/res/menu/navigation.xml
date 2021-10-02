@@ -16,4 +16,7 @@
         android:id="@+id/menuItemOther"
         android:icon="@drawable/ic_bnv_other"
         android:title="@string/bnv_other" />
+    <item
+        android:id="@+id/menuItemPin"
+        android:visible="false" />
 </menu>

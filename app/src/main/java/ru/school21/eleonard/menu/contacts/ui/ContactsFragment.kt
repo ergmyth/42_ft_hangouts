@@ -38,7 +38,7 @@ class ContactsFragment : BaseFragment(R.layout.fragment_contacts), ContactsViewP
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		contactsViewModel = ViewModelProvider(this).get(ContactsViewModel::class.java)
+		contactsViewModel = ViewModelProvider(requireActivity()).get(ContactsViewModel::class.java)
 		configureViews()
 	}
 

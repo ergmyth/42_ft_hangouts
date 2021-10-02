@@ -8,7 +8,7 @@
     <string name="bnv_other">Other</string>
 
     <string name="main_back_pressed">Click again to exit</string>
-
+    <string name="toolbar_title_chat">Chat</string>
     <string name="toolbar_title_contact_info_new">New contact</string>
     <string name="toolbar_title_contact_info">Contact</string>
 
@@ -42,6 +42,7 @@
     <string name="action_edit">Edit</string>
     <string name="action_delete">Delete</string>
     <string name="action_call">Call</string>
+    <string name="action_sms">Sms</string>
     <string name="action_create">Create</string>
     <string name="action_favorite">Favorite</string>
     <string name="action_save">Save</string>
@@ -82,4 +83,7 @@
     <string name="server_403">Request sending failed. Try later.</string>
     <string name="server_404">Response getting error. Try later.</string>
     <string name="default_error_message">Something wrong. Try later.</string>
+
+    <!-- Chat -->
+    <string name="chat_text_field_hint">Text</string>
 </resources>

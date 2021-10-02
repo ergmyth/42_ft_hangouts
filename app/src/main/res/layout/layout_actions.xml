@@ -1,127 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvActions"
     android:layout_width="match_parent"
-    android:id="@+id/clActions"
     android:layout_height="match_parent"
-    android:background="@color/colorOnBackground"
-    android:padding="16dp">
+    android:background="@color/colorOnBackground">
 
-    <ImageView
-        android:id="@+id/ivSave"
-        android:layout_width="@dimen/action_icon_size"
-        android:layout_height="@dimen/action_icon_size"
-        android:padding="8dp"
-        android:visibility="gone"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@id/ivEdit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_done" />
-
-    <ImageView
-        android:id="@+id/ivEdit"
-        android:layout_width="@dimen/action_icon_size"
-        android:layout_height="@dimen/action_icon_size"
-        android:padding="8dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@id/ivDelete"
-        app:layout_constraintStart_toEndOf="@id/ivSave"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_edit_contact" />
-
-    <ImageView
-        android:id="@+id/ivDelete"
-        android:layout_width="@dimen/action_icon_size"
-        android:layout_height="@dimen/action_icon_size"
-        android:layout_marginEnd="20dp"
-        android:padding="8dp"
-        app:layout_constraintEnd_toStartOf="@id/ivPhone"
-        app:layout_constraintStart_toEndOf="@id/ivEdit"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_delete_contact" />
-
-    <ImageView
-        android:id="@+id/ivPhone"
-        android:layout_width="@dimen/action_icon_size"
-        android:layout_height="@dimen/action_icon_size"
-        android:layout_marginEnd="20dp"
-        android:padding="8dp"
-        app:layout_constraintEnd_toStartOf="@id/ivFavorite"
-        app:layout_constraintStart_toEndOf="@id/ivDelete"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_call" />
-
-    <ImageView
-        android:id="@+id/ivFavorite"
-        android:layout_width="@dimen/action_icon_size"
-        android:layout_height="@dimen/action_icon_size"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivPhone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_favorite" />
-
-    <TextView
-        android:id="@+id/tvSave"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_save"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:visibility="gone"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/ivSave"
-        app:layout_constraintStart_toStartOf="@id/ivSave"
-        app:layout_constraintTop_toBottomOf="@id/ivSave" />
+        android:paddingVertical="8dp"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_edit"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/ivEdit"
-        app:layout_constraintStart_toStartOf="@id/ivEdit"
-        app:layout_constraintTop_toBottomOf="@id/ivEdit" />
+        <ImageView
+            android:id="@+id/ivSave"
+            style="@style/ImageViewActionButton"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/ivEdit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_done" />
 
-    <TextView
-        android:id="@+id/tvDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_delete"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/ivDelete"
-        app:layout_constraintStart_toStartOf="@id/ivDelete"
-        app:layout_constraintTop_toBottomOf="@id/ivDelete" />
+        <ImageView
+            android:id="@+id/ivEdit"
+            style="@style/ImageViewActionButton"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
+            app:layout_constraintStart_toEndOf="@id/ivSave"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_edit_contact" />
 
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_call"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/ivPhone"
-        app:layout_constraintStart_toStartOf="@id/ivPhone"
-        app:layout_constraintTop_toBottomOf="@id/ivPhone" />
+        <ImageView
+            android:id="@+id/ivDelete"
+            style="@style/ImageViewActionButton"
+            app:layout_constraintEnd_toStartOf="@id/ivPhone"
+            app:layout_constraintStart_toEndOf="@id/ivEdit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_delete_contact" />
 
-    <TextView
-        android:id="@+id/tvFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/action_favorite"
-        android:textColor="@color/colorPrimary"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/ivFavorite"
-        app:layout_constraintStart_toStartOf="@id/ivFavorite"
-        app:layout_constraintTop_toBottomOf="@id/ivFavorite" />
+        <ImageView
+            android:id="@+id/ivPhone"
+            style="@style/ImageViewActionButton"
+            app:layout_constraintEnd_toStartOf="@id/ivSms"
+            app:layout_constraintStart_toEndOf="@id/ivDelete"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_call" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/ivSms"
+            style="@style/ImageViewActionButton"
+            app:layout_constraintEnd_toStartOf="@id/ivFavorite"
+            app:layout_constraintStart_toEndOf="@id/ivPhone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_sms" />
+
+        <ImageView
+            android:id="@+id/ivFavorite"
+            style="@style/ImageViewActionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorite" />
+
+        <TextView
+            android:id="@+id/tvSave"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_save"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/ivSave"
+            app:layout_constraintStart_toStartOf="@id/ivSave"
+            app:layout_constraintTop_toBottomOf="@id/ivSave" />
+
+        <TextView
+            android:id="@+id/tvEdit"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_edit"
+            app:layout_constraintEnd_toEndOf="@id/ivEdit"
+            app:layout_constraintStart_toStartOf="@id/ivEdit"
+            app:layout_constraintTop_toBottomOf="@id/ivEdit" />
+
+        <TextView
+            android:id="@+id/tvDelete"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_delete"
+            app:layout_constraintEnd_toEndOf="@id/ivDelete"
+            app:layout_constraintStart_toStartOf="@id/ivDelete"
+            app:layout_constraintTop_toBottomOf="@id/ivDelete" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_call"
+            app:layout_constraintEnd_toEndOf="@id/ivPhone"
+            app:layout_constraintStart_toStartOf="@id/ivPhone"
+            app:layout_constraintTop_toBottomOf="@id/ivPhone" />
+
+        <TextView
+            android:id="@+id/tvSms"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_sms"
+            app:layout_constraintEnd_toEndOf="@id/ivSms"
+            app:layout_constraintStart_toStartOf="@id/ivSms"
+            app:layout_constraintTop_toBottomOf="@id/ivSms" />
+
+        <TextView
+            android:id="@+id/tvFavorite"
+            style="@style/TextViewActionButton"
+            android:text="@string/action_favorite"
+            app:layout_constraintEnd_toEndOf="@id/ivFavorite"
+            app:layout_constraintStart_toStartOf="@id/ivFavorite"
+            app:layout_constraintTop_toBottomOf="@id/ivFavorite" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</HorizontalScrollView>

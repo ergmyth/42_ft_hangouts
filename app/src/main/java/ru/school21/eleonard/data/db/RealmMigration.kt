@@ -11,10 +11,10 @@ class RealmMigration : RealmMigration {
 		val schema = realm.schema
 
 		if (oldVersion++ == 0L) {
-			if (schema["ContactModel"] == null)
-				ContactRealmModel.createContactModel(schema)
-			if (schema["MessageModel"] == null)
-				MessageRealmModel.createMessageModel(schema)
+			if (schema[ContactRealmModel.MODEL_NAME] == null)
+				ContactRealmModel.createModel(schema)
+			if (schema[MessageRealmModel.MODEL_NAME] == null)
+				MessageRealmModel.createModel(schema)
 		}
 		if (oldVersion++ == 1L) {
 

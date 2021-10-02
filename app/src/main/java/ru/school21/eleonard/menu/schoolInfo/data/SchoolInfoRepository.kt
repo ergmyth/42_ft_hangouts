@@ -1,9 +1,11 @@
 package ru.school21.eleonard.menu.schoolInfo.data
 
-import androidx.lifecycle.MutableLiveData
+import kotlinx.coroutines.flow.Flow
+import ru.school21.eleonard.data.network.api.models.UserInListResponse
 import ru.school21.eleonard.data.network.api.models.UserResponse
 import ru.school21.eleonard.data.network.helpers.Event
 
 interface SchoolInfoRepository {
-	fun loadUserInfo(userName: String, userInfoLoadingResponse: MutableLiveData<Event<UserResponse>>)
+	fun getUser(userName: String): Flow<Event<UserResponse>>
+	fun getUsers(): Flow<Event<List<UserInListResponse>>>
 }

@@ -9,6 +9,7 @@
     <string name="main_back_pressed">Нажмите еще раз для выхода</string>
 
     <string name="toolbar_title_contact_info_new">Новый контакт</string>
+    <string name="toolbar_title_chat">Чат</string>
     <string name="toolbar_title_contact_info">Контакт</string>
 
     <!-- Функциональные кнопки -->
@@ -41,6 +42,7 @@
     <string name="action_edit">Изменить</string>
     <string name="action_delete">Удалить</string>
     <string name="action_call">Позвонить</string>
+    <string name="action_sms">Написать</string>
     <string name="action_favorite">Избранное</string>
     <string name="action_save">Сохранить</string>
     <string name="action_create">Создать</string>
@@ -79,4 +81,8 @@
     <string name="server_403">Не удалось отправить запрос. Попробуйте повторить позже.</string>
     <string name="server_404">Не удалось получить данные. Попробуйте повторить позже.</string>
     <string name="default_error_message">Что-то пошло не так. Попробуйте повторить позже.</string>
+
+    <!-- Chat -->
+    <string name="chat_text_field_hint">Текст</string>
+
 </resources>

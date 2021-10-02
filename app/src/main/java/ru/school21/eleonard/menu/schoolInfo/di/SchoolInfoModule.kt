@@ -9,8 +9,10 @@ import ru.school21.eleonard.data.network.repositories.CompositeDisposableReposit
 import ru.school21.eleonard.data.network.repositories.ErrorHandlerRepository
 import ru.school21.eleonard.menu.schoolInfo.data.SchoolInfoRepository
 import ru.school21.eleonard.menu.schoolInfo.data.SchoolInfoRepositoryImpl
-import ru.school21.eleonard.menu.schoolInfo.domain.LoadUserInfoUseCase
-import ru.school21.eleonard.menu.schoolInfo.domain.LoadUserInfoUseCaseImpl
+import ru.school21.eleonard.menu.schoolInfo.domain.GetUserInfoUseCase
+import ru.school21.eleonard.menu.schoolInfo.domain.GetUserInfoUseCaseImpl
+import ru.school21.eleonard.menu.schoolInfo.domain.GetUsersUseCase
+import ru.school21.eleonard.menu.schoolInfo.domain.GetUsersUseCaseImpl
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -19,13 +21,17 @@ object SchoolInfoModule {
 	fun provideSchoolInfoRepository(
 		apiRepository: ApiRepository,
 		errorHandlerRepository: ErrorHandlerRepository,
-		compositeDisposableRepository: CompositeDisposableRepository,
 	): SchoolInfoRepository {
-		return SchoolInfoRepositoryImpl(apiRepository, errorHandlerRepository, compositeDisposableRepository)
+		return SchoolInfoRepositoryImpl(apiRepository, errorHandlerRepository)
 	}
 
 	@Provides
-	fun provideLoadUserInfoUseCase(schoolInfoRepository: SchoolInfoRepository): LoadUserInfoUseCase {
-		return LoadUserInfoUseCaseImpl(schoolInfoRepository)
+	fun provideLoadUserInfoUseCase(schoolInfoRepository: SchoolInfoRepository): GetUserInfoUseCase {
+		return GetUserInfoUseCaseImpl(schoolInfoRepository)
+	}
+
+	@Provides
+	fun provideLoadUsersUseCase(schoolInfoRepository: SchoolInfoRepository): GetUsersUseCase {
+		return GetUsersUseCaseImpl(schoolInfoRepository)
 	}
 }
